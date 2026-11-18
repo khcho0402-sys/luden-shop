@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>루덴 LUDEN · Official Store</title>
+<style>
+  :root{
+    --ink:#111111;
+    --sub:#8A8A8E;
+    --line:#EFEFEF;
+    --soft:#F5F5F5;
+    --sale:#D6402F;
+    --head:54px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#fff;color:var(--ink);}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans CJK KR","Noto Sans KR","Malgun Gothic",sans-serif;
+    font-size:13px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    word-break:keep-all;
+  }
+  body.lock{overflow:hidden}
+  img{display:block;max-width:100%}
+  button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto}
+
+  /* ── 상단 공지 바 ── */
+  .notice{
+    background:#111;color:#fff;
+    font-size:10.5px;letter-spacing:.02em;line-height:32px;height:32px;
+    text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    padding:0 10px;
+  }
+  .notice b{font-weight:700}
+  .notice span{color:#B9B9BD;margin:0 6px}
+
+  /* ── 헤더 + 카테고리 탭 (고정) ── */
+  .headwrap{position:sticky;top:0;z-index:40;background:#fff}
+  .hd{
+    height:var(--head);display:flex;align-items:center;justify-content:space-between;
+    padding:0 8px 0 6px;border-bottom:1px solid var(--line);background:#fff;position:relative;
+  }
+  .icon-btn{width:42px;height:42px;display:flex;align-items:center;justify-content:center}
+  .burger{display:flex;flex-direction:column;justify-content:center;gap:5px}
+  .burger i{display:block;width:19px;height:1.5px;background:#111}
+  .logo{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    font-family:"Liberation Serif","Times New Roman",Georgia,serif;
+    font-size:23px;letter-spacing:.01em;font-weight:400;color:#111;line-height:1;
+    padding:6px 2px;
+  }
+  .hd-right{display:flex;align-items:center;gap:0}
+  .bag{position:relative}
+  .bag .badge{
+    position:absolute;top:5px;right:4px;min-width:14px;height:14px;border-radius:7px;
+    background:#111;color:#fff;font-size:9px;line-height:14px;text-align:center;padding:0 3px;
+    font-weight:700;display:none;
+  }
+  .bag .badge.on{display:block}
+
+  .tabs{
+    display:flex;align-items:stretch;gap:15px;height:45px;padding:0 14px;
+    overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    border-bottom:1px solid var(--line);background:#fff;
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{
+    position:relative;flex:0 0 auto;font-size:12px;color:#9B9BA0;letter-spacing:.04em;
+    padding:0 1px;display:flex;align-items:center;
+  }
+  .tab.on{color:#111;font-weight:700}
+  .tab.on::after{content:"";position:absolute;left:-1px;right:-1px;bottom:-1px;height:1.5px;background:#111}
+
+  /* ── 인트로 ── */
+  .intro{padding:26px 16px 18px;border-bottom:1px solid var(--line)}
+  .intro .eyebrow{font-size:9.5px;letter-spacing:.24em;color:#9B9BA0;margin:0 0 9px}
+  .intro h1{
+    margin:0 0 8px;font-family:"Liberation Serif","Times New Roman",Georgia,serif;
+    font-size:24px;font-weight:400;letter-spacing:.01em;line-height:1.25;
+  }
+  .intro p{margin:0;font-size:11.5px;line-height:1.8;color:#77777C;max-width:520px}
+  .intro .badges{display:flex;gap:6px;margin-top:13px;flex-wrap:wrap}
+  .intro .badges span{
+    font-size:10px;letter-spacing:.02em;color:#4A4A4E;border:1px solid #E4E4E7;
+    border-radius:999px;padding:5px 9px;background:#FAFAFA;
+  }
+
+  /* ── 필터 / 정렬 줄 ── */
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:14px 14px 8px;font-size:11px;color:var(--sub)}
+  .bar .cnt b{color:#111;font-weight:700}
+  .sort{display:flex;align-items:center;gap:2px;font-size:11px;color:#555}
+  .sort select{
+    appearance:none;-webkit-appearance:none;border:0;background:transparent;
+    font:inherit;color:#333;padding:4px 14px 4px 2px;outline:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'><path d='M0 0l4 5 4-5z' fill='%23888'/></svg>");
+    background-repeat:no-repeat;background-position:right 2px center;
+  }
+
+  /* ── 상품 그리드 ── */
+  .grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:26px 8px;padding:6px 14px 34px;
+  }
+  @media (min-width:768px){
+    .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 16px;padding:10px 18px 60px}
+  }
+  @media (min-width:1024px){
+    .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:44px 20px;padding:14px 24px 80px}
+  }
+  .card{display:block;width:100%;min-width:0;text-align:left;vertical-align:top}
+  .thumb{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--soft)}
+  .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .card:active .thumb img{transform:scale(1.02)}
+  .bdgs{position:absolute;left:7px;top:7px;display:flex;gap:4px}
+  .bdg{
+    font-size:9px;line-height:1;letter-spacing:.03em;padding:4px 5px;background:#fff;color:#111;font-weight:600;
+  }
+  .bdg.dark{background:#111;color:#fff}
+  .bdg.sale{color:var(--sale)}
+  .nm{
+    margin:9px 2px 0;font-size:12.5px;line-height:1.45;font-weight:500;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+    min-height:36.5px;letter-spacing:-.01em;
+  }
+  @media (min-width:768px){
+    .nm{min-height:0}
+  }
+  .sm{margin:4px 2px 0;font-size:10.5px;color:#9B9BA0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pr{margin:6px 2px 0;display:flex;align-items:baseline;gap:4px;flex-wrap:wrap;font-size:12.5px}
+  .pr .list{color:#B6B6BA;text-decoration:line-through;font-size:11px}
+  .pr .now{font-weight:700}
+  .pr .rate{color:var(--sale);font-weight:700}
+  .chips{display:flex;gap:4px;margin:7px 2px 0;height:10px}
+  .chip{width:9px;height:9px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14)}
+  .empty{padding:70px 20px 90px;text-align:center;color:#9B9BA0;font-size:12px;line-height:1.9}
+
+  /* ── 푸터 ── */
+  .ft{border-top:1px solid var(--line);padding:26px 16px 40px;background:#fff}
+  .ft-in{max-width:1200px;margin:0 auto}
+  .ft-brand{
+    font-family:"Liberation Serif","Times New Roman",Georgia,serif;
+    font-size:16px;letter-spacing:.02em;margin-bottom:12px;
+  }
+  .ft p{margin:0;font-size:10.5px;line-height:1.95;color:#8A8A8E;letter-spacing:.01em}
+  .ft .biz b{color:#5A5A5E;font-weight:600}
+  .ft-links{display:flex;gap:14px;margin:16px 0 10px;font-size:10.5px;color:#5A5A5E;flex-wrap:wrap}
+  .ft-links button{border-bottom:1px solid #D8D8DC;padding-bottom:1px}
+  .copy{margin-top:14px;font-size:9.5px;color:#B6B6BA;letter-spacing:.06em}
+
+  /* ── 공통 스크림 / 드로어 ── */
+  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:100}
+  .scrim.on{opacity:1;pointer-events:auto}
+  .drawer{
+    position:fixed;top:0;bottom:0;left:0;width:82%;max-width:340px;background:#fff;z-index:101;
+    transform:translateX(-101%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+    display:flex;flex-direction:column;
+  }
+  .drawer.on{transform:none}
+  .drawer.right{left:auto;right:0;transform:translateX(101%);max-width:400px;width:88%}
+  .drawer.right.on{transform:none}
+  .d-head{
+    height:56px;display:flex;align-items:center;justify-content:space-between;
+    padding:0 14px 0 18px;border-bottom:1px solid var(--line);flex:0 0 auto;
+  }
+  .d-head h2{margin:0;font-size:13px;font-weight:700;letter-spacing:.02em}
+  .d-head h2 span{color:var(--sub);font-weight:400}
+  .x-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:#111}
+  .d-body{flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain}
+
+  /* 메뉴 드로어 */
+  .m-brand{
+    font-family:"Liberation Serif","Times New Roman",Georgia,serif;font-size:26px;
+    padding:24px 20px 18px;letter-spacing:.01em;
+  }
+  .m-sec{padding:6px 0;border-top:1px solid var(--line)}
+  .m-sec:first-of-type{border-top:0}
+  .m-item{
+    display:flex;align-items:center;justify-content:space-between;width:100%;
+    padding:12px 20px;font-size:13px;color:#222;text-align:left;
+  }
+  .m-item.on{font-weight:700}
+  .m-item .n{font-size:10.5px;color:#B6B6BA}
+  .m-note{padding:18px 20px 26px;font-size:10.5px;line-height:1.9;color:#9B9BA0}
+
+  /* 장바구니 */
+  .cart-list{padding:6px 0 0}
+  .citem{display:flex;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+  .citem .ci-img{width:74px;flex:0 0 74px;aspect-ratio:3/4;background:var(--soft);overflow:hidden}
+  .citem .ci-img img{width:100%;height:100%;object-fit:cover}
+  .ci-info{flex:1 1 auto;min-width:0}
+  .ci-name{font-size:12px;line-height:1.45;margin:0 0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ci-opt{font-size:10.5px;color:#9B9BA0;margin:0 0 8px}
+  .ci-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .stepper{display:flex;align-items:center;border:1px solid #E4E4E7;height:28px}
+  .stepper button{width:26px;height:26px;font-size:14px;color:#333;line-height:1}
+  .stepper span{min-width:24px;text-align:center;font-size:11.5px}
+  .ci-price{font-size:12px;font-weight:700}
+  .ci-del{font-size:10.5px;color:#9B9BA0;margin-top:8px;border-bottom:1px solid #E0E0E3;padding-bottom:1px}
+  .cart-empty{padding:80px 20px;text-align:center;color:#9B9BA0;font-size:12px;line-height:2}
+  .cart-foot{flex:0 0 auto;border-top:1px solid #E4E4E7;padding:14px 16px calc(16px + env(safe-area-inset-bottom));background:#fff}
+  .sum{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:4px}
+  .sum .k{font-size:11.5px;color:#666}
+  .sum .v{font-size:15px;font-weight:700}
+  .sum.sub{margin-bottom:12px}
+  .sum.sub .v{font-size:12px;font-weight:500;color:#555}
+  .cart-foot .btns{display:flex;gap:8px}
+  .cart-foot .btns .btn{flex:1}
+
+  /* ── 버튼 ── */
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    height:50px;font-size:13px;font-weight:600;letter-spacing:.01em;border:1px solid transparent;
+  }
+  .btn:active{opacity:.82}
+  .btn.pri{background:#111;color:#fff}
+  .btn.sec{background:#fff;color:#111;border-color:#DCDCDE}
+  .btn.kakao{background:#FEE500;color:#3C1E1E;border-color:#FEE500}
+  .btn.tiny{height:38px;font-size:11.5px;border-color:#DCDCDE}
+
+  /* ══════════════════════════════════════
+     상품상세 (PDP)
+     ══════════════════════════════════════ */
+  .pdp{position:fixed;inset:0;z-index:80;background:#fff;display:none;overflow-y:auto;overscroll-behavior:contain}
+  .pdp.on{display:block}
+  .pdp-in{max-width:960px;margin:0 auto;padding-bottom:96px}
+  .pdp-top{
+    position:sticky;top:0;z-index:6;display:flex;align-items:center;justify-content:space-between;
+    height:48px;padding:0 6px 0 14px;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .pdp-top .t{font-size:11px;letter-spacing:.14em;color:#8A8A8E}
+  .pdp-top .acts{display:flex;align-items:center}
+
+  /* 갤러리 */
+  .gal{position:relative;background:var(--soft)}
+  .gal-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+  .gal-track::-webkit-scrollbar{display:none}
+  .gal-track img{flex:0 0 100%;width:100%;aspect-ratio:4/5;object-fit:contain;background:#F5F5F5;scroll-snap-align:center}
+  .gal-dots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:5px}
+  .gal-dots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+  .gal-dots i.on{background:#111}
+  .gal-idx{
+    position:absolute;right:10px;bottom:10px;font-size:10px;letter-spacing:.04em;
+    background:rgba(17,17,17,.62);color:#fff;padding:3px 7px;border-radius:999px;
+  }
+
+  /* 정보 */
+  .pinfo{padding:18px 16px 4px}
+  .p-brand{font-size:9.5px;letter-spacing:.18em;color:#9B9BA0;margin:0 0 8px;text-transform:uppercase}
+  .p-name{margin:0 0 7px;font-size:18px;line-height:1.4;font-weight:600;letter-spacing:-.015em}
+  .p-sub{margin:0 0 14px;font-size:11.5px;line-height:1.7;color:#8A8A8E}
+  .p-price{margin:0 0 4px}
+  .p-price .row1{display:flex;align-items:baseline;gap:6px;font-size:11.5px;color:#B6B6BA;margin-bottom:2px}
+  .p-price .row1 .rate{color:var(--sale);font-weight:700;font-size:12.5px}
+  .p-price .row1 s{text-decoration:line-through}
+  .p-price .row2{display:flex;align-items:baseline;gap:5px}
+  .p-price .row2 .now{font-size:23px;font-weight:700;letter-spacing:-.02em}
+  .p-price .row2 .won{font-size:13px;font-weight:500;color:#555}
+  .p-foot{margin:12px 0 0;font-size:10.5px;line-height:1.7;color:#B6B6BA}
+
+  /* 배송 안내 박스 */
+  .ship{margin:16px 0 0;border:1px solid #EDEDEF;background:#FAFAFA;padding:12px 13px}
+  .ship dl{margin:0;display:grid;grid-template-columns:64px 1fr;row-gap:6px}
+  .ship dt{font-size:10.5px;color:#8A8A8E;letter-spacing:.02em}
+  .ship dd{margin:0;font-size:11px;line-height:1.6;color:#333}
+  .ship dd b{font-weight:600}
+  .ship .warn{
+    margin-top:10px;padding-top:10px;border-top:1px dashed #E2E2E5;
+    font-size:10.5px;line-height:1.7;color:#7A5B2E;
+  }
+  .ship .warn b{color:#5E441C}
+
+  .hr{height:1px;background:var(--line);margin:20px 0}
+
+  /* 옵션 */
+  .opt-label{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 9px}
+  .opt-label .k{font-size:11.5px;color:#333;letter-spacing:.02em}
+  .opt-label .k b{font-weight:600}
+  .opt-label .v{font-size:11px;color:#9B9BA0}
+  .opts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+  .opt{
+    min-width:54px;height:38px;padding:0 13px;border:1px solid #E0E0E3;background:#fff;
+    font-size:11.5px;color:#333;display:inline-flex;align-items:center;gap:7px;
+  }
+  .opt.on{border-color:#111;color:#111;font-weight:700;box-shadow:inset 0 0 0 1px #111}
+  .opt.col i,.opt-sel i{width:12px;height:12px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.16);flex:0 0 auto}
+  .opt.soldout{color:#C0C0C5;text-decoration:line-through;background:#FAFAFA}
+
+  .picks{margin-bottom:16px}
+  .pick{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    border:1px solid #E4E4E7;background:#fff;padding:11px 12px;margin-bottom:8px;
+  }
+  .pick .pi{min-width:0}
+  .pick .pn{font-size:11.5px;line-height:1.5;color:#222;margin:0 0 6px}
+  .pick .prow{display:flex;align-items:center;gap:10px}
+  .pick .pp{font-size:12px;font-weight:700}
+  .pick .del{width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:#9B9BA0;font-size:13px}
+  .picks .hint{font-size:10.5px;color:#B0B0B5;line-height:1.7}
+
+  /* TOTAL PRICE */
+  .total{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:15px 0 2px;border-top:1px solid #111;margin-top:4px;
+  }
+  .total .k{font-size:11px;letter-spacing:.1em;color:#333}
+  .total .k b{font-weight:700}
+  .total .v{font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .total .cnt{font-size:11px;color:#8A8A8E;font-weight:400;margin-left:4px}
+
+  /* 상세 하단 고정 바 */
+  .pdp-buy{
+    position:fixed;left:0;right:0;bottom:0;z-index:7;background:rgba(255,255,255,.98);
+    border-top:1px solid #E4E4E7;backdrop-filter:blur(8px);
+    padding:8px 12px calc(10px + env(safe-area-inset-bottom));
+    display:flex;gap:7px;max-width:960px;margin:0 auto;
+  }
+  .pdp-buy .b-cart{
+    flex:0 0 52px;height:50px;border:1px solid #DCDCDE;background:#fff;color:#111;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:8.5px;letter-spacing:.02em;
+  }
+  .pdp-buy .btn{flex:1}
+
+  /* 상세 탭 */
+  .ptabs{
+    position:sticky;top:48px;z-index:5;display:flex;background:#fff;border-bottom:1px solid var(--line);
+    overflow-x:auto;scrollbar-width:none;
+  }
+  .ptabs::-webkit-scrollbar{display:none}
+  .ptab{
+    flex:0 0 auto;padding:14px 14px 12px;font-size:11.5px;color:#9B9BA0;letter-spacing:.02em;
+    border-bottom:1.5px solid transparent;white-space:nowrap;
+  }
+  .ptab.on{color:#111;font-weight:700;border-bottom-color:#111}
+  .psec{padding:22px 16px 26px;border-bottom:8px solid #F7F7F8}
+  .psec h3{margin:0 0 12px;font-size:12px;letter-spacing:.14em;color:#111;font-weight:700}
+  .psec h3 em{font-style:normal;color:#B6B6BA;font-weight:400;margin-left:6px;letter-spacing:.06em}
+  .psec p{margin:0 0 10px;font-size:11.5px;line-height:1.95;color:#4A4A4E}
+  .lead{font-size:12px;line-height:2;color:#333}
+
+  .points{list-style:none;margin:0;padding:0}
+  .points li{
+    position:relative;padding:0 0 9px 13px;font-size:11.5px;line-height:1.85;color:#4A4A4E;
+  }
+  .points li::before{content:"";position:absolute;left:0;top:8px;width:4px;height:4px;background:#111;border-radius:50%}
+  .points li b{font-weight:600;color:#111}
+
+  .fabric{width:100%;border-collapse:collapse;font-size:11px}
+  .fabric th{
+    text-align:left;font-weight:400;color:#8A8A8E;width:78px;padding:9px 0;vertical-align:top;
+    border-top:1px solid var(--line);
+  }
+  .fabric td{padding:9px 0;color:#333;border-top:1px solid var(--line);line-height:1.65}
+  .fabric tr:last-child td,.fabric tr:last-child th{border-bottom:1px solid var(--line)}
+
+  /* 사이즈 표 */
+  .size-table{width:100%;border-collapse:collapse;font-size:11px;margin-bottom:10px;table-layout:fixed}
+  .size-table th,.size-table td{padding:9px 4px;text-align:center;border-bottom:1px solid #EDEDEF}
+  .size-table thead th{
+    font-weight:500;color:#6A6A6E;background:#FAFAFA;border-top:1px solid #EDEDEF;font-size:10.5px;
+  }
+  .size-table tbody td{color:#333}
+  .size-table tbody tr td:first-child{font-weight:600;color:#111}
+  .size-note{font-size:10.5px;line-height:1.8;color:#8A8A8E;margin:0}
+  .size-note b{color:#4A4A4E;font-weight:600}
+  .unit{font-size:10px;color:#B6B6BA;margin:0 0 8px;letter-spacing:.02em}
+
+  .cuts{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+  .cuts img{width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--soft)}
+  .cuts.single{grid-template-columns:1fr}
+  .cuts.single img{aspect-ratio:4/5}
+
+  .bbs{border-top:1px solid var(--line)}
+  .bbs-row{display:flex;align-items:center;justify-content:space-between;padding:13px 2px;border-bottom:1px solid var(--line);font-size:11.5px;color:#333}
+  .bbs-row .l{display:flex;align-items:center;gap:8px;min-width:0}
+  .bbs-row .l span.tag{font-size:9.5px;letter-spacing:.04em;color:#8A8A8E;border:1px solid #E4E4E7;padding:2px 5px}
+  .bbs-row .d{font-size:10.5px;color:#B6B6BA;flex:0 0 auto;margin-left:10px}
+  .bbs-empty{padding:26px 2px 20px;text-align:center;font-size:11.5px;line-height:1.9;color:#9B9BA0}
+
+  .cs-grid{display:grid;grid-template-columns:1fr;gap:0}
+  .cs-row{display:grid;grid-template-columns:86px 1fr;gap:6px;padding:8px 0;border-bottom:1px solid #F2F2F4;font-size:11px}
+  .cs-row .k{color:#8A8A8E}
+  .cs-row .v{color:#333;line-height:1.6}
+
+  /* 검색 오버레이 */
+  .search{position:fixed;inset:0;z-index:120;display:none}
+  .search.on{display:block}
+  .search .scrim{opacity:1;pointer-events:auto;position:absolute;z-index:0}
+  .spanel{
+    position:relative;z-index:1;margin:92px 14px 0;background:#fff;border-radius:14px;
+    padding:16px 16px 18px;box-shadow:0 24px 70px rgba(0,0,0,.28);
+    animation:pop .22s ease-out;
+  }
+  @keyframes pop{from{transform:translateY(-6px);opacity:.5}to{transform:none;opacity:1}}
+  @media (min-width:768px){.spanel{margin:100px auto 0;max-width:560px}}
+  .srow{display:flex;align-items:center;gap:8px;border-bottom:1.5px solid #111;padding-bottom:10px}
+  .srow input{
+    flex:1;border:0;outline:none;font:inherit;font-size:15px;letter-spacing:-.01em;
+    background:transparent;color:#111;min-width:0;
+  }
+  .srow input::placeholder{color:#C0C0C5}
+  .srow .go{width:30px;height:26px;display:flex;align-items:center;justify-content:center;color:#111}
+  .stag-title{font-size:10.5px;letter-spacing:.1em;color:#9B9BA0;margin:16px 0 10px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{font-size:11.5px;padding:8px 12px;border-radius:999px;background:#F4F4F5;color:#333}
+  .tag i{font-style:normal;color:#B0B0B5;margin-right:2px}
+  .s-res{font-size:11px;color:#8A8A8E;margin:14px 0 0}
+  .s-res b{color:#111}
+
+  /* TALK 플로팅 */
+  .talk{
+    position:fixed;right:14px;bottom:18px;z-index:50;height:50px;padding:0 17px 0 14px;
+    border-radius:999px;background:#111;color:#fff;display:flex;align-items:center;gap:7px;
+    font-size:11.5px;font-weight:700;letter-spacing:.1em;
+    box-shadow:0 10px 26px rgba(0,0,0,.24);
+  }
+  .talk:active{transform:scale(.97)}
+
+  /* 토스트 */
+  .toast{
+    position:fixed;left:50%;bottom:112px;transform:translate(-50%,10px);
+    background:rgba(17,17,17,.93);color:#fff;font-size:11.5px;line-height:1.6;
+    padding:11px 16px;border-radius:999px;max-width:86vw;text-align:center;
+    opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:130;
+  }
+  .toast.on{opacity:1;transform:translate(-50%,0)}
+
+  /* 데스크톱 상세 2단 */
+  @media (min-width:900px){
+    .pdp-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;align-items:start}
+    .gal{position:sticky;top:48px}
+    .pinfo{padding:28px 26px 4px}
+    .pdp-buy{position:sticky;bottom:0;max-width:960px;box-shadow:0 -8px 24px rgba(0,0,0,.05)}
+    .pdp-in{padding-bottom:0}
+  }
+</style>
+</head>
+<body>
+
+<!-- ── 상단 공지 ── -->
+<div class="notice" id="notice">해외 사입 상품<span>|</span>배송까지 약 <b>10~14일</b><span>|</span><b>70,000원 이상 무료배송</b></div>
+
+<!-- ── 고정 헤더 + 카테고리 ── -->
+<div class="headwrap">
+  <header class="hd">
+    <button class="icon-btn" id="menuBtn" aria-label="메뉴 열기">
+      <span class="burger"><i></i><i></i><i></i></span>
+    </button>
+    <a class="logo" href="#" id="logoBtn"><em>luden.</em></a>
+    <div class="hd-right">
+      <button class="icon-btn" id="searchBtn" aria-label="검색">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6">
+          <circle cx="10.8" cy="10.8" r="6.6"/><path d="M15.7 15.7L21 21" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <button class="icon-btn bag" id="cartBtn" aria-label="장바구니">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6">
+          <path d="M5 8h14l-1 12.2a1.4 1.4 0 0 1-1.4 1.3H7.4A1.4 1.4 0 0 1 6 20.2L5 8Z"/>
+          <path d="M9 8V6.4a3 3 0 0 1 6 0V8" stroke-linecap="round"/>
+        </svg>
+        <span class="badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs" aria-label="카테고리"></nav>
+</div>
+
+<!-- ── 인트로 ── -->
+<section class="intro" id="intro">
+  <p class="eyebrow">LUDEN · MEN'S SELECT</p>
+  <h1>겨울 아우터부터 니트·후드·팬츠까지, 여덟 벌로 정리했습니다</h1>
+  <p>중국 사입처에서 직접 고른 8종입니다. 코트·집업·니트·후드·팬츠가 서로 겹치지 않게 두께와 기장, 카라 모양을 맞춰 옷장에서 조합이 되는 라인업으로 골랐습니다.</p>
+  <div class="badges">
+    <span>70,000원 이상 무료배송</span>
+    <span>평균 배송 10~14일</span>
+    <span>불량·오배송 교환 접수</span>
+  </div>
+</section>
+
+<!-- ── 정렬 / 결과 ── -->
+<div class="bar">
+  <div class="cnt">총 <b id="cntNum">0</b>개 상품</div>
+  <div class="sort">
+    <select id="sortSel" aria-label="정렬">
+      <option value="recommend">추천순</option>
+      <option value="new">신상품순</option>
+      <option value="low">낮은가격순</option>
+      <option value="high">높은가격순</option>
+    </select>
+  </div>
+</div>
+
+<!-- ── 상품 그리드 ── -->
+<main class="wrap">
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" style="display:none">해당 카테고리에 상품이 없습니다.<br>다른 카테고리를 선택해 주세요.</div>
+</main>
+
+<!-- ── 푸터 ── -->
+<footer class="ft">
+  <div class="ft-in">
+    <div class="ft-brand">luden.</div>
+    <div class="ft-links">
+      <button data-toast="이용약관은 시안 단계라 아직 연결되지 않았습니다.">이용약관</button>
+      <button data-toast="개인정보처리방침은 시안 단계라 아직 연결되지 않았습니다.">개인정보처리방침</button>
+      <button data-toast="사업자정보 확인은 시안 단계라 아직 연결되지 않았습니다.">사업자정보확인</button>
+    </div>
+    <p class="biz"><b>상호명</b> 루덴 &nbsp;|&nbsp; <b>대표</b> 조규희 &nbsp;|&nbsp; <b>사업자등록번호</b> 219-06-13931</p>
+    <p>배송·교환 문의는 우측 하단 <b>TALK</b> 버튼으로 받습니다.</p>
+    <div class="copy">© LUDEN. ALL RIGHTS RESERVED.</div>
+  </div>
+</footer>
+
+<button class="talk" id="talkBtn" aria-label="카카오톡 문의">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round">
+    <path d="M21 11.6c0 4.1-4 7.4-9 7.4-1 0-2-.1-2.9-.4L4 21l1.2-3.5C3.6 16 2.5 13.9 2.5 11.6c0-4.1 4-7.4 9-7.4s9.5 3.3 9.5 7.4Z"/>
+  </svg>
+  TALK
+</button>
+
+<!-- ── 스크림 / 메뉴 드로어 ── -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="menu" aria-label="메뉴">
+  <div class="d-head">
+    <h2>MENU</h2>
+    <button class="x-btn" data-close="menu" aria-label="닫기">✕</button>
+  </div>
+  <div class="d-body">
+    <div class="m-brand">luden.</div>
+    <div class="m-sec" id="menuCats"></div>
+    <div class="m-sec">
+      <button class="m-item" data-toast="로그인·회원가입은 시안 단계라 아직 연결되지 않았습니다."><span>로그인 · 회원가입</span><span class="n">→</span></button>
+      <button class="m-item" data-toast="주문조회는 시안 단계라 아직 연결되지 않았습니다."><span>주문조회</span><span class="n">→</span></button>
+      <button class="m-item" data-toast="카카오톡 채널 링크를 연결하면 바로 상담으로 연결됩니다."><span>고객센터 · 카톡 문의</span><span class="n">→</span></button>
+      <button class="m-item" data-toast="공지사항은 시안 단계라 아직 연결되지 않았습니다."><span>공지사항</span><span class="n">→</span></button>
+    </div>
+    <div class="m-note">루덴 · 대표 조규희<br>사업자등록번호 219-06-13931</div>
+  </div>
+</aside>
+
+<!-- ── 장바구니 드로어 ── -->
+<aside class="drawer right" id="cart" aria-label="장바구니">
+  <div class="d-head">
+    <h2>장바구니 <span id="cartHeadCnt">(0)</span></h2>
+    <button class="x-btn" data-close="cart" aria-label="닫기">✕</button>
+  </div>
+  <div class="d-body cart-list" id="cartList"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="sum"><span class="k">상품금액</span><span class="v" id="cartGoods">0원</span></div>
+    <div class="sum sub"><span class="k">배송비</span><span class="v" id="cartShip">0원</span></div>
+    <div class="sum"><span class="k">총 결제금액</span><span class="v" id="cartTotal">0원</span></div>
+    <div class="btns">
+      <button class="btn pri" id="cartBuy">구매 링크로 이동</button>
+      <button class="btn kakao" id="cartKakao">카톡 문의</button>
+    </div>
+  </div>
+</aside>
+
+<!-- ── 상품 상세 (PDP) ── -->
+<div class="pdp" id="pdp" role="dialog" aria-modal="true" aria-label="상품 상세">
+  <div class="pdp-in" id="pdpIn"></div>
+  <div class="pdp-buy" id="pdpBuy">
+    <button class="b-cart" data-cart-open aria-label="장바구니 열기">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6">
+        <path d="M5 8h14l-1 12.2a1.4 1.4 0 0 1-1.4 1.3H7.4A1.4 1.4 0 0 1 6 20.2L5 8Z"/>
+        <path d="M9 8V6.4a3 3 0 0 1 6 0V8" stroke-linecap="round"/>
+      </svg>
+      <span>BAG</span>
+    </button>
+    <button class="btn sec" id="addCart">장바구니</button>
+    <button class="btn pri" id="buyNow">바로 구매</button>
+  </div>
+</div>
+
+<!-- ── 검색 오버레이 ── -->
+<div class="search" id="search" role="dialog" aria-modal="true" aria-label="검색">
+  <div class="scrim" data-close="search"></div>
+  <div class="spanel">
+    <div class="srow">
+      <input id="searchInput" type="search" placeholder="상품명 또는 카테고리를 검색하세요" autocomplete="off">
+      <button class="go" id="searchGo" aria-label="검색 실행">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6">
+          <circle cx="10.8" cy="10.8" r="6.6"/><path d="M15.7 15.7L21 21" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="stag-title">인기 검색어</div>
+    <div class="tags" id="searchTags"></div>
+    <div class="s-res" id="searchRes"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   LUDEN SHOP · 상품 데이터
+   ------------------------------------------------------------
+   ※ 의류 8종은 어이사마켓 상품코드로 실제 상세페이지에서 확인한
+     컬러·사이즈·원단·스펙만 옮겨 적었습니다. 상세페이지에 없는
+     수치(실측 등)는 비워 두고 reasons 를 sizeNote 에 적었습니다.
+   id      : 상품 식별자
+   code    : 어이사마켓 상품코드
+   name    : 노출 상품명
+   summary : 한 줄 요약 (그리드)
+   price   : 판매가 / listPrice : 정가(없으면 null)
+   cats    : ALL, BEST, NEW, OUTER, KNIT, TOP, PANTS
+   imgs    : 같은 폴더(downloads) 기준 이미지 파일명 4장
+   colors  : [{n:'색상', c:'#HEX'}]
+   sizes   : ['M','L',...]
+   sizeTable : {unit, head:[], rows:[[]], note}
+   fabric  : [[라벨, 값], ...]
+   points  : Check Point 목록
+   ============================================================ */
+const KAKAO_URL  = '';                            // 카카오톡 채널 주소를 넣으면 TALK·문의 버튼이 연결됩니다
+
+/* 공통 배송 정책 */
+const SHIP_FEE = 3000;
+const SHIP_FREE = 70000;
+
+const PRODUCTS = [
+
+  /* ── 1. 모직 더블 레이어 트렌치 오버 코트 (4082052) ── */
+  {
+    id:'coat-trench',
+    code:'4082052',
+    name:'루덴 더블 레이어 트렌치 울 코트',
+    summary:'더블 레이어 · 힙 덮는 중장기 · 오버핏',
+    listPrice:79000, price:59000,
+    cats:['ALL','OUTER','BEST'],
+    badge:'BEST',
+    imgs:['luden_prod_1_main.jpg','luden_prod_1_2.jpg','luden_prod_1_3.jpg','luden_prod_1_4.jpg'],
+    colors:[{n:'블랙',c:'#181818'},{n:'다크 브라운',c:'#4A3A2C'}],
+    sizes:['M','L','XL','2XL','3XL'],
+    sizeTable:{
+      unit:'권장 사이즈 (사입처 제공 · 키 cm / 몸무게 斤)',
+      head:['사이즈','권장 키','권장 몸무게','비고'],
+      rows:[
+        ['M','160–168','95–110斤 (47.5–55kg)','정핏'],
+        ['L','165–173','110–130斤 (55–65kg)','정핏'],
+        ['XL','170–178','130–145斤 (65–72.5kg)','정핏'],
+        ['2XL','175–183','145–160斤 (72.5–80kg)','여유'],
+        ['3XL','180–185','160–175斤 (80–87.5kg)','여유']
+      ],
+      note:'사입처가 실측표(어깨·가슴·소매·총장)를 제공하지 않아 수치를 표기하지 않습니다. 위 표는 사입처 권장 기준이고, 오버핏이라 평소 사이즈에서 한 치수 내리셔도 여유가 있습니다.'
+    },
+    fabric:[
+      ['겉감','폴리에스터 60% (모직 터치 원단)'],
+      ['안감','폴리에스터 100%'],
+      ['두께','일반형 (봄·가을~초겨울)'],
+      ['여밈','싱글 버튼 · 더블 레이어 앞여밈'],
+      ['기장','힙을 덮는 중장기 · 스트레이트 밑단'],
+      ['부자재','라펠 칼라 / 사이드 포켓 / 벨트 없음']
+    ],
+    points:[
+      '앞여밈이 두 겹으로 겹치는 <b>더블 레이어</b> 구조라 바람이 잘 들어오지 않습니다.',
+      '어깨가 자연스럽게 떨어지는 오버핏, 힙을 덮는 중장기로 슬랙스·데님 모두에 붙습니다.',
+      '라펠 칼라와 싱글 버튼으로 니트 위에 걸치면 그대로 한 벌이 됩니다.',
+      '안감이 있어 니트 위에 입어도 마찰이 적고, 다림질이 필요 없는 후가공 원단입니다.'
+    ],
+    desc:[
+      '요청하신 톤에 맞춰 가장 무난하게 입히는 코트입니다. 블랙은 겨울철 데일리, 다크 브라운은 니트·셔츠와 겹쳐 입기 좋습니다.',
+      '사입처 원문에는 캐시미어 워싱이 들어가 있지만 실제 표기된 혼용률은 폴리에스터 60%입니다. 촉감은 모직에 가깝고 관리가 쉬운 쪽입니다.'
+    ],
+    care:'드라이클리닝을 권장합니다. 오염이 묻었을 때 물세탁하면 안감과 겉감 수축 차이가 날 수 있습니다.',
+    link:''
+  },
+
+  /* ── 2. 토끼털 혼방 솔리드 니트 가디건 (5323820) ── */
+  {
+    id:'cardigan-rabbit',
+    code:'5323820',
+    name:'루덴 솔리드 집업 니트 가디건',
+    summary:'토끼털 혼방 · 풀집업 · 루즈핏',
+    listPrice:45000, price:34000,
+    cats:['ALL','KNIT','TOP','BEST'],
+    badge:null,
+    imgs:['luden_prod_2_main.jpg','luden_prod_2_2.jpg','luden_prod_2_3.jpg','luden_prod_2_4.jpg'],
+    colors:[{n:'블랙',c:'#161616'},{n:'그레이',c:'#9C9EA1'},{n:'살구색',c:'#EFE3D2'}],
+    sizes:['M','L','XL','2XL','3XL'],
+    sizeTable:{
+      unit:'실측 (단위 cm · 사입처 평면 측정)',
+      head:['사이즈','총장','소매','가슴(단면)','어깨'],
+      rows:[
+        ['M','64','58','50','42'],
+        ['L','65','59','51','43'],
+        ['XL','67','60','52','44'],
+        ['2XL','69','61','54','46'],
+        ['3XL','71','62','56','48']
+      ],
+      note:'사입처 표기 그대로이며 1~3cm 오차가 있을 수 있습니다. 가슴은 <b>단면</b> 기준이라 두 배로 보시면 됩니다. 루즈핏이라 평소 사이즈가 여유 있게 맞습니다.'
+    },
+    fabric:[
+      ['겉감','토끼털 혼방 (혼용률 세부 미표기)'],
+      ['촉감','보풀 없는 도톰한 파일 조직'],
+      ['두께','일반형 (겨울 단독 착용)'],
+      ['여밈','풀집업 · 라운드넥'],
+      ['세탁','사입처 표기: 기계세탁 가능']
+    ],
+    points:[
+      '토끼털을 섞어 촉감이 부드럽고, 같은 톤 안에서 보풀이 적게 올라오는 편입니다.',
+      '라운드넥 풀집업이라 셔츠·티셔츠 위에 걸치거나 단독으로 입기 모두 됩니다.',
+      '어깨가 떨어지는 루즈핏, 밑단과 소매는 골지로 잡아 흘러내리지 않습니다.',
+      '겨울 단독 착용 기준 두께로, 코트 안에 받쳐 입어도 겨드랑이가 답답하지 않습니다.'
+    ],
+    desc:[
+      '블랙·그레이·살구색 세 색으로 준비했습니다. 살구색은 아이보리에 가까운 톤이라 안쪽에 흰 티를 받치면 깔끔합니다.',
+      '사입처가 혼용률을 세부 표기하지 않아(토끼털 혼방만 표기) 비율은 기재하지 않았습니다. 촉감은 토끼털 계열의 부드러운 파일감입니다.'
+    ],
+    care:'찬물 단독 세탁 또는 드라이클리닝을 권장합니다. 건조기 사용은 피하고 눕혀서 그늘 건조해 주세요.',
+    link:''
+  },
+
+  /* ── 3. 폴리에스터 하프 집업 니트 (5436457) ── */
+  {
+    id:'knit-halfzip',
+    code:'5436457',
+    name:'루덴 카라 하프집업 니트',
+    summary:'카라 하프집업 · 골지 밑단 · 루즈핏',
+    listPrice:42000, price:32000,
+    cats:['ALL','KNIT','TOP','NEW'],
+    badge:'NEW',
+    imgs:['luden_prod_3_main.jpg','luden_prod_3_2.jpg','luden_prod_3_3.jpg','luden_prod_3_4.jpg'],
+    colors:[{n:'검은색',c:'#141414'},{n:'카키색',c:'#B8A077'},{n:'회색',c:'#A9AAAC'}],
+    sizes:['M','L','XL','2XL','3XL'],
+    sizeTable:{
+      unit:'권장 사이즈 (사입처 제공 · 키 cm / 몸무게 斤)',
+      head:['사이즈','권장 키','권장 몸무게','비고'],
+      rows:[
+        ['M','150–165','80–95斤 (40–47.5kg)','여유'],
+        ['L','155–170','95–110斤 (47.5–55kg)','여유'],
+        ['XL','165–175','115–130斤 (57.5–65kg)','정핏'],
+        ['2XL','170–180','130–145斤 (65–72.5kg)','정핏'],
+        ['3XL','175–185','145–165斤 (72.5–82.5kg)','정핏']
+      ],
+      note:'사입처가 실측표를 제공하지 않아 수치 대신 권장표만 옮겼습니다. 루즈핏이고, 사입처는 넉넉하게 입으려면 한 치수 크게 주문하라고 안내하고 있습니다.'
+    },
+    fabric:[
+      ['겉감','화학섬유 혼방 (폴리에스터 주원단 · 함량 미표기)'],
+      ['조직','가로 골지 · 세로로 흐르는 결'],
+      ['두께','일반형 (초겨울까지)'],
+      ['여밈','하프 지퍼 · 라펠(카라) 칼라'],
+      ['부자재','골지 밑단·소매']
+    ],
+    points:[
+      '카라가 서 있는 <b>라펠 칼라</b>에 하프 지퍼를 반만 올려 입는 실루엣입니다.',
+      '지퍼를 내리면 라펠이 자연스럽게 펴져 셔츠 위에 걸친 아우터처럼 보입니다.',
+      '밑단·소매에 골지를 넣어 흘러내리지 않고 허리선이 잡힙니다.',
+      '두께가 두껍지 않아 코트·자켓 안에 받쳐 입기 좋습니다.'
+    ],
+    desc:[
+      '세 색 모두 무채색 계열과 카키 한 색으로 맞췄습니다. 검은색은 데일리, 카키색은 니트 안에 흰 티를 받칠 때 가장 무난합니다.',
+      '사입처 표기 원단명은 화학섬유 혼방(주원단 폴리에스터)이며 함량 숫자는 표기되어 있지 않아 그대로 비워 두었습니다.'
+    ],
+    care:'찬물에 중성세제로 단독 세탁하고, 눕혀서 그늘 건조해 주세요. 건조기 사용은 피합니다.',
+    link:''
+  },
+
+  /* ── 4. 코듀로이 라펠 두꺼운 숏 자켓 (5432742) ── */
+  {
+    id:'jacket-corduroy',
+    code:'5432742',
+    name:'루덴 코듀로이 라펠 숏 자켓',
+    summary:'코듀로이 · 두꺼운 충전 · 짧은 기장',
+    listPrice:52000, price:39000,
+    cats:['ALL','OUTER','NEW'],
+    badge:null,
+    imgs:['luden_prod_4_main.jpg','luden_prod_4_2.jpg','luden_prod_4_3.jpg','luden_prod_4_4.jpg'],
+    colors:[{n:'블랙',c:'#151515'},{n:'그레이',c:'#6E6468'}],
+    sizes:['M','L','XL','2XL','3XL'],
+    sizeTable:{
+      unit:'권장 사이즈 (사입처 제공 · 몸무게 斤)',
+      head:['사이즈','권장 몸무게','비고'],
+      rows:[
+        ['M','85–105斤 (42.5–52.5kg)','정핏'],
+        ['L','105–125斤 (52.5–62.5kg)','정핏'],
+        ['XL','125–140斤 (62.5–70kg)','정핏'],
+        ['2XL','140–155斤 (70–77.5kg)','여유'],
+        ['3XL','155–180斤 (77.5–90kg)','여유']
+      ],
+      note:'사입처가 실측표를 제공하지 않아 몸무게 기준 권장표만 옮겼습니다. 사입처 표기 오차 범위는 3cm이며, 기장은 숏(40~50cm)으로 안내되어 있습니다.'
+    },
+    fabric:[
+      ['겉감','폴리에스터 100% (코듀로이 조직)'],
+      ['안감','폴리에스터 100%'],
+      ['충전','폴리에스터 섬유 (함량 95% 이상 표기)'],
+      ['두께','두꺼운 (보온)'],
+      ['여밈','지퍼 · 차이나(스탠드) 칼라'],
+      ['기장','숏 (40–50cm) · 스트레이트 밑단']
+    ],
+    points:[
+      '골이 살아 있는 <b>코듀로이</b> 조직에 충전을 넣어 겨울용으로 두껍게 나온 숏 자켓입니다.',
+      '기장이 짧아 슬랙스·와이드 팬츠 어디에 붙여도 비율이 무너지지 않습니다.',
+      '지퍼 여밈에 스탠드 칼라를 세우면 목선까지 막아 줍니다.',
+      '사이드 포켓이 손을 넣기 좋은 높이에 있고, 밑단은 스트레이트로 떨어집니다.'
+    ],
+    desc:[
+      '그레이와 블랙 두 색입니다. 그레이는 데님·기모 팬츠, 블랙은 슬랙스에 붙이기 좋습니다.',
+      '사입처가 <b>불량과 품절이 잦은 업체</b>로 안내하고 있는 상품입니다. 주문 전 재고를 한 번 더 확인하고, 받으시면 바로 검품해 주세요.'
+    ],
+    care:'드라이클리닝을 권장합니다. 충전재가 들어 있어 물세탁하면 충전이 뭉칠 수 있습니다.',
+    link:''
+  },
+
+  /* ── 5. 폴리에스터 스트레이트 핏 신축성 조거 팬츠 (4833069) ── */
+  {
+    id:'pants-jogger',
+    code:'4833069',
+    name:'루덴 스트레이트 조거 팬츠',
+    summary:'허리 밴딩 · 미세 신축 · 스트레이트 핏',
+    listPrice:48000, price:36000,
+    cats:['ALL','PANTS','BEST'],
+    badge:'BEST',
+    imgs:['luden_prod_5_main.jpg','luden_prod_5_2.jpg','luden_prod_5_3.jpg','luden_prod_5_4.jpg'],
+    colors:[{n:'그레이',c:'#B9B9B6'},{n:'블랙',c:'#17171A'}],
+    sizes:['S','M','L','XL','2XL','3XL'],
+    sizeTable:{
+      unit:'실측 (단위 cm · 사입처 표기)',
+      head:['사이즈','총장','허리','엉덩이','밑단'],
+      rows:[
+        ['M','101','84','114','52'],
+        ['L','103','88','118','54'],
+        ['XL','105','90','120','56'],
+        ['2XL','107','94','124','58'],
+        ['3XL','109','98','128','60']
+      ],
+      note:'사입처 표기 그대로이며 오차 1~3cm입니다. 허리·엉덩이·밑단은 둘레 기준으로 적혀 있고 허리는 신축 밴딩이라 편차가 큽니다. <b>S 사이즈는 사입처 실측표에 없어</b> 수치를 비워 두었습니다. 권장은 160~170cm·95~110斤 M / 165~175·115~130斤 L / 165~180·135~150斤 XL / 170~185·155~170斤 2XL / 175~195·175~190斤 3XL 입니다.'
+    },
+    fabric:[
+      ['겉감','폴리에스터 70–80%'],
+      ['직물','면 사선 격자 조직 · 미세 신축'],
+      ['허리','미드라이즈 · 스트링 밴딩'],
+      ['두께','일반형 (봄·가을)'],
+      ['기장','긴바지 · 스트레이트 밑단'],
+      ['관리','기계세탁 가능 · 다림질 불필요']
+    ],
+    points:[
+      '허리 전체에 <b>밴딩과 스트링</b>이 들어가 조거처럼 편하게 조절되고, 밖으로 나온 끈으로 허리선을 잡을 수 있습니다.',
+      '밑단까지 일자로 떨어지는 <b>스트레이트 핏</b>이라 슬랙스 대신 입어도 라인이 무너지지 않습니다.',
+      '폴리에스터 사선 격자 원단에 미세 신축을 넣어 앉았다 일어나도 무릎이 덜 늘어납니다.',
+      '사입처 기준 <b>월 판매 200개 이상</b>으로 돌고 있는 상품이고, 남녀공용 사이즈로 나옵니다.'
+    ],
+    desc:[
+      '그레이와 블랙 두 색입니다. 그레이는 니트·후드 어디에나 붙고, 블랙은 코트 안에 받쳐 입기 좋습니다.',
+      '사입처 색상 코드는 K2032이고 표기는 그레이·블랙입니다. 광저우 지춘 의류 공장 상품으로, 어이사마켓 우수업체·재주문율 47% 이상으로 표시된 곳입니다.'
+    ],
+    care:'허리 밴딩이 들어간 팬츠라 찬물 단독 세탁 후 눕혀서 그늘 건조해 주세요. 건조기는 밴딩과 원단 수축에 영향을 줄 수 있습니다.',
+    link:''
+  },
+
+  /* ── 6. 헤비 그레이 후드 티셔츠 (5489866) ── */
+  {
+    id:'hoodie-heavy',
+    code:'5489866',
+    name:'루덴 헤비 기모 후드 티셔츠',
+    summary:'기모 안감 · 캥거루 포켓 · 루즈핏',
+    listPrice:32000, price:24000,
+    cats:['ALL','TOP','BEST'],
+    badge:null,
+    imgs:['luden_prod_6_main.jpg','luden_prod_6_2.jpg','luden_prod_6_3.jpg','luden_prod_6_4.jpg'],
+    colors:[{n:'그레이 (기모)',c:'#B9BCBD'},{n:'블랙 (기모)',c:'#151517'}],
+    sizes:['M','L','XL','2XL','3XL','4XL','5XL'],
+    sizeTable:{
+      unit:'권장 사이즈 (사입처 TRY ON 기준 · 몸무게 斤 / 키 cm)',
+      head:['사이즈','권장 몸무게','권장 키','비고'],
+      rows:[
+        ['M','80–100斤 (40–50kg)','158–165','정핏'],
+        ['L','100–115斤 (50–57.5kg)','160–170','정핏'],
+        ['XL','115–130斤 (57.5–65kg)','165–172','정핏'],
+        ['2XL','130–145斤 (65–72.5kg)','168–175','여유'],
+        ['3XL','145–160斤 (72.5–80kg)','172–180','여유'],
+        ['4XL','160–180斤 (80–90kg)','175–182','여유'],
+        ['5XL','180–200斤 (90–100kg)','178–185','여유']
+      ],
+      note:'사입처가 cm 실측표는 제공하지 않고 <b>TRY ON 권장표만</b> 제공합니다. 기모 안감이 들어간 헤비 원단(180–250g)이라 같은 표기 사이즈에서도 여유 있게 나옵니다.'
+    },
+    fabric:[
+      ['겉감','폴리에스터 91–95%'],
+      ['안감','기모 (사입처 표기 플러스 벨벳)'],
+      ['두께','기모 · 무게 180–250g'],
+      ['핏','루즈핏 · 풀오버 후드'],
+      ['포켓','캥거루 포켓 (입체 패치)'],
+      ['시즌','겨울']
+    ],
+    points:[
+      '가슴에 <b>BOSTON 레터링 프린트</b>가 들어간 헤비 후드입니다. 사입처 원문 상품명도 같은 프린트 기준입니다.',
+      '앞면 한가운데에 <b>캥거루 포켓</b>이 입체로 붙어 있어 손 넣기 좋고, 배 부분이 한 겹 더 덮입니다.',
+      '안쪽 전체에 기모를 넣어 겨울 단독 착용이 가능하고, 목선은 후드로 한 번 더 막힙니다.',
+      '어깨가 떨어지는 루즈핏이라 안에 셔츠나 기모 티를 받쳐도 겨드랑이가 답답하지 않습니다.'
+    ],
+    desc:[
+      '그레이와 블랙 두 색 모두 안감 기모로 나옵니다. 그레이는 사진처럼 톤이 밝아 데님·블랙 팬츠 어디에나 붙습니다.',
+      '사입처는 어이사마켓 평가에서 <b>최우수업체·재주문율 57% 이상</b>이고, 상품퀄리티·사입성공률·배송기간이 모두 좋음으로 표시된 업체입니다.'
+    ],
+    care:'기모 안감이 있어 뒤집어서 찬물 세탁하고 건조기는 피해 주세요. 프린트 부분에는 다림질을 직접 대지 마세요.',
+    link:''
+  },
+
+  /* ── 7. 폴리에스터 후드 집업 기모 플리스 (4734945) ── */
+  {
+    id:'fleece-zip',
+    code:'4734945',
+    name:'루덴 후드 플리스 집업',
+    summary:'기모 플리스 · 풀집업 후드 · 루즈핏',
+    listPrice:46000, price:35000,
+    cats:['ALL','OUTER','TOP','NEW'],
+    badge:'NEW',
+    imgs:['luden_prod_7_main.jpg','luden_prod_7_2.jpg','luden_prod_7_3.jpg','luden_prod_7_4.jpg'],
+    colors:[{n:'그레이',c:'#8E8E8A'},{n:'그린',c:'#93A392'},{n:'카키',c:'#C0AE8B'}],
+    sizes:['M','L','XL','2XL'],
+    sizeTable:null,
+    sizeNote:'사입처가 <b>실측표도 권장표도 제공하지 않습니다.</b> M·L·XL·2XL 네 사이즈만 운영하며, 기모 플리스에 루즈핏이라 평소 사이즈 그대로를 권장합니다. 정확한 실측이 필요하시면 주문 전 TALK로 문의해 주세요 — 확인해서 알려드립니다.',
+    fabric:[
+      ['원단','사입처가 원단명·혼용률을 기재하지 않음 (플리스 기모 조직)'],
+      ['두께','기모 · 겨울'],
+      ['여밈','풀집업 · 후드'],
+      ['핏','루즈핏'],
+      ['포켓','사이드 솔기 포켓'],
+      ['품질','사입처 품질검사 보고서 보유 상품']
+    ],
+    points:[
+      '겉면 전체가 <b>기모 플리스</b> 조직이라 보온이 좋고, 안감 없이 한 겹으로 입습니다.',
+      '후드가 목 뒤까지 올라오고 <b>풀집업</b>이라 바람이 들어오는 틈을 잠글 수 있습니다.',
+      '어깨가 넓게 떨어지는 루즈핏으로, 안에 맨투맨·니트를 받쳐도 팔이 묶이지 않습니다.',
+      '소매 끝과 밑단에 시보리가 들어가 흘러내리지 않고, 사이드 포켓이 손 높이에 있습니다.'
+    ],
+    desc:[
+      '그레이·그린·카키 세 색입니다. 그린은 사진처럼 채도가 낮은 세이지 톤이라 안에 흰 티를 받치면 깔끔합니다.',
+      '사입처가 원단 혼용률을 <b>기타</b>로만 적어 두어 소재 비율은 표기하지 않았습니다. 어이사마켓 우수업체 상품이고 품질검사 보고서 보유로 표시되어 있습니다.'
+    ],
+    care:'플리스 기모 조직이라 세탁망에 넣어 단독 세탁하고, 건조기 대신 눕혀서 그늘 건조해 주세요.',
+    link:''
+  },
+
+  /* ── 8. 폴리에스터 라운드넥 루즈핏 니트 스웨터 (5346457) ── */
+  {
+    id:'knit-crew',
+    code:'5346457',
+    name:'루덴 라운드넥 루즈 니트',
+    summary:'라운드넥 · 루즈핏 · 8컬러',
+    listPrice:39000, price:29000,
+    cats:['ALL','KNIT','TOP'],
+    badge:null,
+    imgs:['luden_prod_8_main.jpg','luden_prod_8_2.jpg','luden_prod_8_3.jpg','luden_prod_8_4.jpg'],
+    colors:[{n:'군청색',c:'#22315C'},{n:'다크그레이',c:'#55575B'},{n:'라이트블루',c:'#A9C3D6'},{n:'블랙',c:'#141416'},
+            {n:'블루',c:'#2C4E92'},{n:'오렌지',c:'#D95F32'},{n:'와인',c:'#6B1F2B'},{n:'화이트',c:'#EFEDE6'}],
+    sizes:['M','L','XL','2XL','3XL','4XL'],
+    sizeTable:{
+      unit:'권장 사이즈 (사입처 TRY ON 기준 · 몸무게 斤 / 키 cm)',
+      head:['사이즈','권장 몸무게','권장 키','비고'],
+      rows:[
+        ['M','100–110斤 (50–55kg)','150–165','정핏'],
+        ['L','115–125斤 (57.5–62.5kg)','165–170','정핏'],
+        ['XL','125–140斤 (62.5–70kg)','170–175','여유'],
+        ['2XL','145–160斤 (72.5–80kg)','175–180','여유'],
+        ['3XL','165–185斤 (82.5–92.5kg)','180–185','여유']
+      ],
+      note:'사입처가 cm 실측표 대신 <b>TRY ON 권장표</b>를 제공합니다. 표는 3XL까지이고, 판매 사이즈에 있는 <b>4XL은 권장 수치가 없어</b> 비워 두었습니다. 루즈핏이라 평소 사이즈로도 여유 있게 맞습니다.'
+    },
+    fabric:[
+      ['겉감','폴리에스터 80% (화학섬유 혼방)'],
+      ['두께','일반형 (봄·가을)'],
+      ['넥','라운드넥 · 긴소매'],
+      ['핏','루즈핏 풀오버'],
+      ['기능','보풀 방지 · 오염 방지 가공 표기'],
+      ['중량','650g (사입처 표기)']
+    ],
+    points:[
+      '목선이 넓게 파인 <b>라운드넥</b>이라 셔츠·티셔츠를 안에 받쳐도 목이 답답하지 않습니다.',
+      '어깨가 자연스럽게 떨어지고 몸통에 여유가 있는 <b>루즈핏</b>으로, 단독으로 입어도 실루엣이 남습니다.',
+      '사입처가 <b>보풀 방지·오염 방지</b> 가공을 표기한 니트라 관리가 비교적 편합니다.',
+      '무채색부터 오렌지·와인까지 <b>8컬러</b>로 나와 안에 입는 셔츠 색과 맞추기 좋습니다.'
+    ],
+    desc:[
+      '군청색·다크그레이·라이트블루·블랙·블루·오렌지·와인·화이트 8색입니다. 무난하게는 다크그레이·블랙, 포인트로는 와인·오렌지를 권합니다.',
+      '사입처 촬영컷에는 옵션에 없는 색(올리브 그린 등)도 섞여 있어, 실제 주문 색상은 <b>옵션명 기준</b>으로 봐 주시면 됩니다. 제양시 제동구 계령진 소노의류공장 상품으로 최우수·우수업체, 품질·사입성공률 평가가 좋음으로 표시되어 있습니다.'
+    ],
+    care:'니트는 접어서 보관하고, 세탁할 때는 망에 넣어 단독 세탁해 주세요. 늘어짐 방지를 위해 옷걸이에 걸어 두지 마세요.',
+    link:''
+  },
+];
+
+/* ============================================================
+   상태 · 유틸
+   ============================================================ */
+const TABS = ['ALL','OUTER','KNIT','TOP','PANTS'];
+const TAB_LABEL = {'ALL':'ALL','OUTER':'OUTER','KNIT':'KNIT','TOP':'TOP','PANTS':'PANTS'};
+const SEARCH_TAGS = ['코트','가디건','후드티','플리스','조거팬츠','니트'];
+
+const state = {cat:'ALL', q:'', sort:'recommend', cart:[]};
+let cur = null;
+let sel = {color:null, size:null, qty:1, picks:[]};
+
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const won = n => n.toLocaleString('ko-KR') + '원';
+const rate = p => p.listPrice ? Math.round((1 - p.price / p.listPrice) * 100) : 0;
+const byId = id => PRODUCTS.find(p => p.id === id);
+
+let toastTimer = null;
+function toast(msg){
+  const el = $('#toast');
+  el.textContent = msg;
+  el.classList.add('on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('on'), 2600);
+}
+
+/* ============================================================
+   카테고리 탭 · 그리드
+   ============================================================ */
+function renderTabs(){
+  $('#tabs').innerHTML = TABS.map(t =>
+    `<button class="tab${state.cat === t ? ' on' : ''}" data-cat="${t}">${TAB_LABEL[t]}</button>`
+  ).join('');
+  $('#menuCats').innerHTML = TABS.map(t =>
+    `<button class="m-item${state.cat === t ? ' on' : ''}" data-cat="${t}">
+       <span>${TAB_LABEL[t]}</span><span class="n">${countCat(t)}</span>
+     </button>`
+  ).join('');
+}
+function countCat(t){
+  return t === 'ALL' ? PRODUCTS.length : PRODUCTS.filter(p => p.cats.includes(t)).length;
+}
+
+function haystack(p){
+  const colors = p.colors ? p.colors.map(c => c.n) : [];
+  return [p.name, p.summary, p.badge || '', ...p.cats, ...colors, p.code || ''].join(' ').toLowerCase();
+}
+
+function filtered(){
+  const q = state.q.trim().toLowerCase().replace(/^#/, '');
+  let list = PRODUCTS.filter(p => {
+    const okCat = state.cat === 'ALL' || p.cats.includes(state.cat);
+    const okQ = !q || haystack(p).includes(q);
+    return okCat && okQ;
+  });
+  if(state.sort === 'low')  list = list.slice().sort((a,b) => a.price - b.price);
+  if(state.sort === 'high') list = list.slice().sort((a,b) => b.price - a.price);
+  if(state.sort === 'new')  list = list.slice().sort((a,b) => (b.cats.includes('NEW')?1:0) - (a.cats.includes('NEW')?1:0));
+  return list;
+}
+
+function cardHTML(p){
+  const r = rate(p);
+  return `<button class="card" data-id="${p.id}" aria-label="${p.name}">
+    <div class="thumb">
+      <img src="${p.imgs[0]}" alt="${p.name}">
+      <div class="bdgs">
+        ${p.badge ? `<span class="bdg${p.badge === 'BEST' ? ' dark' : ''}">${p.badge}</span>` : ''}
+        ${r ? `<span class="bdg sale">-${r}%</span>` : ''}
+      </div>
+    </div>
+    <p class="nm">${p.name}</p>
+    <p class="sm">${p.summary}</p>
+    <p class="pr">
+      ${p.listPrice ? `<span class="list">${won(p.listPrice)}</span>` : ''}
+      <span class="now">${won(p.price)}</span>
+      ${r ? `<span class="rate">${r}%</span>` : ''}
+    </p>
+    ${p.colors ? `<div class="chips">${p.colors.map(c => `<span class="chip" style="background:${c.c}" title="${c.n}"></span>`).join('')}</div>` : ''}
+  </button>`;
+}
+
+function renderGrid(){
+  const list = filtered();
+  $('#grid').innerHTML = list.map(cardHTML).join('');
+  $('#cntNum').textContent = list.length;
+  $('#empty').style.display = list.length ? 'none' : 'block';
+  $('#empty').innerHTML = state.q
+    ? `‘${state.q}’ 검색 결과가 없습니다.<br>다른 검색어를 입력해 보세요.`
+    : `해당 카테고리에 상품이 없습니다.<br>다른 카테고리를 선택해 주세요.`;
+  renderTabs();
+}
+
+/* ============================================================
+   상품 상세 (PDP)
+   ============================================================ */
+function sizeTableHTML(p){
+  if(!p.sizeTable) return p.sizeNote ? `<p class="size-note">${p.sizeNote}</p>` : '';
+  const t = p.sizeTable;
+  return `
+    <p class="unit">${t.unit}</p>
+    <table class="size-table">
+      <thead><tr>${t.head.map((h,i) => `<th${i===0?' style="width:22%"':''}>${h}</th>`).join('')}</tr></thead>
+      <tbody>${t.rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>
+    </table>
+    <p class="size-note">${t.note}</p>`;
+}
+
+function fabricHTML(p){
+  if(!p.fabric) return '';
+  return `<table class="fabric">${p.fabric.map(([k,v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join('')}</table>`;
+}
+
+function picksHTML(p){
+  if(!sel.picks.length){
+    return `<p class="hint">색상과 사이즈를 선택하면 아래에 옵션이 담깁니다.</p>`;
+  }
+  return sel.picks.map((it, idx) => `
+    <div class="pick">
+      <div class="pi">
+        <p class="pn">${it.color} / ${it.size}</p>
+        <div class="prow">
+          <span class="stepper">
+            <button data-pick-qty="-1" data-idx="${idx}" aria-label="수량 줄이기">−</button>
+            <span>${it.qty}</span>
+            <button data-pick-qty="1" data-idx="${idx}" aria-label="수량 늘리기">+</button>
+          </span>
+          <span class="pp">${won(p.price * it.qty)}</span>
+        </div>
+      </div>
+      <button class="del" data-pick-del="${idx}" aria-label="옵션 삭제">✕</button>
+    </div>`).join('');
+}
+
+function totalQty(){
+  return sel.picks.reduce((s,i) => s + i.qty, 0);
+}
+function totalPrice(){
+  if(!cur) return 0;
+  return sel.picks.reduce((s,i) => s + i.qty, 0) * cur.price;
+}
+
+function refreshTotals(){
+  const n = totalQty(), v = totalPrice();
+  const t = $('#pdpTotal');
+  if(t){
+    const none = cur && !sel.picks.length;
+    t.innerHTML = `<span class="k">TOTAL PRICE <b>(수량 ${n})</b></span>
+                   ${none ? '<span class="v" style="font-size:12px;font-weight:500;color:#9B9BA0">옵션을 선택해 주세요</span>'
+                          : `<span class="v">${won(v)}</span>`}`;
+  }
+  const picks = $('#picks');
+  if(picks) picks.innerHTML = picksHTML(cur);
+}
+
+function openDetail(id){
+  const p = byId(id);
+  if(!p) return;
+  cur = p;
+  sel = {color:p.colors ? p.colors[0].n : null, size:null, qty:1, picks:[]};
+
+  const r = rate(p);
+
+  $('#pdpIn').innerHTML = `
+    <div class="pdp-top">
+      <span class="t">PRODUCT</span>
+      <div class="acts">
+        <button class="icon-btn" id="pdpShare" aria-label="공유">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6">
+            <circle cx="18" cy="5.5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="18.5" r="2.6"/>
+            <path d="M8.3 10.7l7.4-3.9M8.3 13.3l7.4 3.9"/>
+          </svg>
+        </button>
+        <button class="x-btn" id="pdpClose" aria-label="닫기">✕</button>
+      </div>
+    </div>
+
+    <div class="pdp-hero">
+      <div class="gal">
+        <div class="gal-track" id="galTrack">
+          ${p.imgs.map((src,i) => `<img src="${src}" alt="${p.name} ${i+1}">`).join('')}
+        </div>
+        <div class="gal-dots" id="galDots">${p.imgs.map((_,i) => `<i class="${i===0?'on':''}"></i>`).join('')}</div>
+        <div class="gal-idx" id="galIdx">1 / ${p.imgs.length}</div>
+      </div>
+
+      <div class="pinfo">
+        <p class="p-brand">LUDEN · MEN’S APPAREL</p>
+        <h2 class="p-name">${p.name}</h2>
+        <p class="p-sub">${p.summary}</p>
+
+        <div class="p-price">
+          ${p.listPrice ? `<div class="row1"><s>${won(p.listPrice)}</s><span class="rate">${r}%</span></div>` : ''}
+          <div class="row2"><span class="now">${won(p.price)}</span></div>
+        </div>
+        <p class="p-foot">상품코드 ${p.code} · VAT 포함</p>
+
+        <div class="ship">
+          <dl>
+            <dt>배송비</dt><dd><b>3,000원</b> · 70,000원 이상 구매 시 <b>무료배송</b></dd>
+            <dt>배송기간</dt><dd>해외 사입 배송 상품으로 배송까지 약 <b>10~14일(2주)</b> 소요될 수 있습니다</dd>
+            <dt>출고</dt><dd>사입처 재고 확인 후 순차 출고 (평일 기준)</dd>
+          </dl>
+          <div class="warn"><b>무재고 테스트 운영 안내</b> · 주문 후 사입처에서 매입하는 방식이라 품절 시 100% 환불 처리됩니다. 급한 일정이 있으시면 주문 전 TALK로 재고를 먼저 확인해 주세요.</div>
+        </div>
+
+        <div class="hr"></div>
+
+        <p class="opt-label"><span class="k">색상 <b>선택</b></span><span class="v">${sel.color || ''}</span></p>
+        <div class="opts" id="colorOpts">
+          ${p.colors.map(c => `<button class="opt col${c.n === sel.color ? ' on' : ''}" data-color="${c.n}">
+            <i style="background:${c.c}"></i>${c.n}</button>`).join('')}
+        </div>
+
+        <p class="opt-label"><span class="k">사이즈 <b>선택</b></span><span class="v" id="sizeHint">${sel.size || '사이즈표는 아래 SIZE INFO 참고'}</span></p>
+        <div class="opts" id="sizeOpts">
+          ${p.sizes.map(s => `<button class="opt" data-size="${s}">${s}</button>`).join('')}
+        </div>
+
+        <div class="picks" id="picks"></div>
+
+        <div class="total" id="pdpTotal"></div>
+      </div>
+    </div>
+
+    <nav class="ptabs" id="ptabs">
+      <button class="ptab on" data-tab="desc">DESCRIPTION</button>
+      <button class="ptab" data-tab="fabric">FABRIC</button><button class="ptab" data-tab="size">SIZE INFO</button>
+      <button class="ptab" data-tab="cut">DETAIL CUT</button>
+      <button class="ptab" data-tab="review">REVIEW</button>
+      <button class="ptab" data-tab="qna">Q&amp;A</button>
+      <button class="ptab" data-tab="cs">CS</button>
+    </nav>
+
+    <section class="psec" id="sec-desc">
+      <h3>DESCRIPTION <em>Check Point</em></h3>
+      <ul class="points">${p.points.map(x => `<li>${x}</li>`).join('')}</ul>
+      <div class="hr"></div>
+      ${(p.desc || []).map(x => `<p class="lead">${x}</p>`).join('')}
+    </section>
+
+    <section class="psec" id="sec-fabric">
+      <h3>FABRIC <em>소재 · 스펙</em></h3>
+      ${fabricHTML(p)}
+      <div class="hr"></div>
+      <p class="lead">${p.care}</p>
+    </section>
+
+    <section class="psec" id="sec-size">
+      <h3>SIZE INFO <em>사이즈</em></h3>
+      ${sizeTableHTML(p)}
+    </section>
+
+    <section class="psec" id="sec-cut">
+      <h3>DETAIL CUT <em>실물 컷</em></h3>
+      <div class="cuts">
+        ${p.imgs.slice(1).map((src,i) => `<img src="${src}" alt="${p.name} 디테일 ${i+1}">`).join('')}
+      </div>
+      <p class="size-note" style="margin-top:10px">사입처가 촬영한 실물 이미지입니다. 모니터·조명에 따라 색감이 다르게 보일 수 있습니다.</p>
+    </section>
+
+    <section class="psec" id="sec-review">
+      <h3>REVIEW <em>구매 후기</em></h3>
+      <div class="bbs-empty">아직 등록된 후기가 없습니다.<br>첫 후기를 남겨 주시면 적립금을 드립니다.</div>
+      <button class="btn sec tiny" data-toast="후기 작성은 로그인 연동 후 열립니다.">후기 작성</button>
+    </section>
+
+    <section class="psec" id="sec-qna">
+      <h3>Q&amp;A <em>상품 문의</em></h3>
+      <div class="bbs">
+        <div class="bbs-row"><div class="l"><span class="tag">비밀글</span>배송 기간 문의드립니다</div><span class="d">답변대기</span></div>
+        <div class="bbs-row"><div class="l"><span class="tag">비밀글</span>사이즈 재입고 문의</div><span class="d">답변대기</span></div>
+      </div>
+      <p class="size-note" style="margin:12px 0 10px">문의는 TALK로도 받습니다. 재고·사이즈 확인은 평균 1시간 내에 답변드립니다.</p>
+      <button class="btn sec tiny" id="qnaBtn">문의하기</button>
+    </section>
+
+    <section class="psec" id="sec-cs">
+      <h3>CS <em>교환 · 반품 · 사업자 정보</em></h3>
+      <div class="cs-grid">
+        <div class="cs-row"><span class="k">교환·반품</span><span class="v">수령 후 7일 이내 접수. 실물 확인이 가능한 불량(오염·봉제·지퍼·구멍)만 가능하며, 색상·소재·사이즈 차이는 사입 구조상 반품이 어렵습니다.</span></div>
+        <div class="cs-row"><span class="k">품절·지연</span><span class="v">사입처 재고 변동 시 알림 후 전액 환불 처리됩니다.</span></div>
+        <div class="cs-row"><span class="k">배송비</span><span class="v">3,000원 · 70,000원 이상 무료배송</span></div>
+        <div class="cs-row"><span class="k">상호</span><span class="v">루덴</span></div>
+        <div class="cs-row"><span class="k">대표</span><span class="v">조규희</span></div>
+        <div class="cs-row"><span class="k">사업자등록번호</span><span class="v">219-06-13931</span></div>
+        <div class="cs-row"><span class="k">문의</span><span class="v">카카오톡 채널 (우측 하단 TALK)</span></div>
+      </div>
+    </section>
+  `;
+
+  /* 옵션 이벤트 */
+  const cOpts = $$('#colorOpts .opt');
+  cOpts.forEach(b => b.addEventListener('click', () => {
+    sel.color = b.dataset.color;
+    cOpts.forEach(x => x.classList.toggle('on', x === b));
+    const v = $('.opt-label .v');
+    if(v) v.textContent = sel.color;
+  }));
+
+  $$('#sizeOpts .opt').forEach(b => b.addEventListener('click', () => {
+    const size = b.dataset.size;
+    if(!sel.color) return toast('색상을 먼저 선택해 주세요.');
+    sel.size = size;
+    $$('#sizeOpts .opt').forEach(x => x.classList.toggle('on', x === b));
+    const h = $('#sizeHint'); if(h) h.textContent = size;
+    const found = sel.picks.find(i => i.color === sel.color && i.size === size);
+    if(found) found.qty = Math.min(20, found.qty + 1);
+    else sel.picks.push({color:sel.color, size, qty:1});
+    refreshTotals();
+  }));
+
+  $('#pdpIn').addEventListener('click', e => {
+    const pq = e.target.closest('[data-pick-qty]');
+    if(pq){
+      const i = Number(pq.dataset.idx);
+      sel.picks[i].qty = Math.min(20, Math.max(1, sel.picks[i].qty + Number(pq.dataset.pickQty)));
+      refreshTotals();
+      return;
+    }
+    const del = e.target.closest('[data-pick-del]');
+    if(del){
+      sel.picks.splice(Number(del.dataset.pickDel), 1);
+      refreshTotals();
+    }
+  });
+
+  /* 갤러리 인디케이터 */
+  const track = $('#galTrack');
+  track.addEventListener('scroll', () => {
+    const i = Math.round(track.scrollLeft / track.clientWidth);
+    $$('#galDots i').forEach((d,k) => d.classList.toggle('on', k === i));
+    $('#galIdx').textContent = (i+1) + ' / ' + p.imgs.length;
+  }, {passive:true});
+
+  /* 스크롤 위치에 따라 탭 활성 표시 */
+  const pdpEl = $('#pdp');
+  pdpEl.addEventListener('scroll', () => {
+    const tabs = $$('#ptabs .ptab');
+    let active = tabs[0];
+    tabs.forEach(t => {
+      const sec = $('#sec-' + t.dataset.tab);
+      if(sec && sec.getBoundingClientRect().top <= 140) active = t;
+    });
+    tabs.forEach(t => t.classList.toggle('on', t === active));
+  }, {passive:true});
+
+  /* 탭 이동 */
+  $('#ptabs').addEventListener('click', e => {
+    const b = e.target.closest('.ptab');
+    if(!b) return;
+    $$('#ptabs .ptab').forEach(x => x.classList.toggle('on', x === b));
+    const sec = $('#sec-' + b.dataset.tab);
+    if(sec){
+      const y = sec.getBoundingClientRect().top + $('#pdp').scrollTop - 96;
+      $('#pdp').scrollTo({top:y, behavior:'smooth'});
+    }
+  });
+
+  $('#pdpClose').addEventListener('click', closeDetail);
+  $('#pdpShare').addEventListener('click', () => {
+    if(navigator.share){ navigator.share({title:p.name, text:p.name}).catch(()=>{}); }
+    else toast('링크가 복사되었습니다. (시안)');
+  });
+
+  refreshTotals();
+  $('#pdp').classList.add('on');
+  document.body.classList.add('lock');
+  $('#pdp').scrollTop = 0;
+}
+
+function closeDetail(){
+  $('#pdp').classList.remove('on');
+  if(navigator.share){} // noop
+  document.body.classList.remove('lock');
+  cur = null;
+}
+
+function goBuy(p){
+  if(!p.link){ return toast('구매 링크를 연결하면 바로 이동합니다. (스마트스토어 상품 URL을 넣어 주세요)'); }
+  window.open(p.link, '_blank', 'noopener');
+}
+
+/* ============================================================
+   장바구니
+   ============================================================ */
+function addPicksToCart(){
+  const p = cur;
+  if(!p) return;
+  if(!sel.picks.length) return toast('색상과 사이즈를 선택해 주세요.');
+  sel.picks.forEach(i => pushCart(p, i.color, i.size, i.qty));
+  toast('장바구니에 담았습니다. (' + sel.picks.reduce((s,i)=>s+i.qty,0) + '개)');
+}
+function pushCart(p, color, size, qty){
+  const key = [p.id, color || '', size || ''].join('|');
+  const found = state.cart.find(c => c.key === key);
+  if(found) found.qty = Math.min(20, found.qty + qty);
+  else state.cart.push({key, id:p.id, color, size, qty});
+  renderCart();
+}
+function cartCount(){ return state.cart.reduce((s,c) => s + c.qty, 0); }
+function cartGoods(){ return state.cart.reduce((s,c) => s + byId(c.id).price * c.qty, 0); }
+function cartShip(){
+  return cartGoods() >= SHIP_FREE ? 0 : SHIP_FEE;
+}
+
+function renderCart(){
+  const n = cartCount();
+  $('#cartHeadCnt').textContent = '(' + n + ')';
+  const badge = $('#cartBadge');
+  badge.textContent = n;
+  badge.classList.toggle('on', n > 0);
+
+  if(!state.cart.length){
+    $('#cartList').innerHTML = `<div class="cart-empty">장바구니가 비어 있습니다.<br>마음에 드는 상품을 담아 보세요.</div>`;
+    $('#cartFoot').style.display = 'none';
+    return;
+  }
+  $('#cartFoot').style.display = 'block';
+  const g = cartGoods(), s = cartShip();
+  $('#cartGoods').textContent = won(g);
+  $('#cartShip').textContent = s ? won(s) : '무료';
+  $('#cartTotal').textContent = won(g + s);
+
+  $('#cartList').innerHTML = state.cart.map(c => {
+    const p = byId(c.id);
+    const opts = [c.color, c.size ? '사이즈 ' + c.size : ''].filter(Boolean).join(' · ');
+    return `<div class="citem">
+      <div class="ci-img"><img src="${p.imgs[0]}" alt="${p.name}"></div>
+      <div class="ci-info">
+        <p class="ci-name">${p.name}</p>
+        <p class="ci-opt">${opts || '옵션 없음'}</p>
+        <div class="ci-row">
+          <span class="stepper">
+            <button data-cart-qty="-1" data-key="${c.key}" aria-label="수량 줄이기">−</button>
+            <span>${c.qty}</span>
+            <button data-cart-qty="1" data-key="${c.key}" aria-label="수량 늘리기">+</button>
+          </span>
+          <span class="ci-price">${won(p.price * c.qty)}</span>
+        </div>
+        <button class="ci-del" data-del="${c.key}">삭제</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ============================================================
+   검색
+   ============================================================ */
+function openSearch(){
+  $('#search').classList.add('on');
+  document.body.classList.add('lock');
+  setTimeout(() => $('#searchInput').focus(), 120);
+  updateSearchRes();
+  $('#searchInput').value = state.q;
+}
+function closeSearch(){
+  $('#search').classList.remove('on');
+  if(!$('#cart').classList.contains('on') && !$('#menu').classList.contains('on')){
+    document.body.classList.remove('lock');
+  }
+}
+function updateSearchRes(){
+  const q = $('#searchInput').value.trim();
+  const n = PRODUCTS.filter(p => !q || haystack(p).includes(q.toLowerCase().replace(/^#/, ''))).length;
+  $('#searchRes').innerHTML = q ? `‘<b>${q}</b>’ 검색 결과 <b>${n}</b>개` : `전체 상품 <b>${PRODUCTS.length}</b>개`;
+}
+function applyQuery(q){
+  state.q = q;
+  renderGrid();
+  updateSearchRes();
+}
+
+/* ============================================================
+   드로어 · 스크림
+   ============================================================ */
+function openDrawer(which){
+  $('#scrim').classList.add('on');
+  $('#' + which).classList.add('on');
+  document.body.classList.add('lock');
+}
+function closeAll(){
+  $('#scrim').classList.remove('on');
+  $('#menu').classList.remove('on');
+  $('#cart').classList.remove('on');
+  $('#search').classList.remove('on');
+  document.body.classList.remove('lock');
+}
+
+/* ============================================================
+   이벤트
+   ============================================================ */
+function setCat(cat){
+  state.cat = cat;
+  state.q = '';
+  const el = $(`#tabs .tab[data-cat="${cat}"]`);
+  if(el) el.scrollIntoView({inline:'center', block:'nearest', behavior:'smooth'});
+  renderGrid();
+}
+
+$('#tabs').addEventListener('click', e => {
+  const b = e.target.closest('.tab');
+  if(b) setCat(b.dataset.cat);
+});
+$('#menuCats').addEventListener('click', e => {
+  const b = e.target.closest('[data-cat]');
+  if(!b) return;
+  setCat(b.dataset.cat);
+  closeAll();
+});
+$('#grid').addEventListener('click', e => {
+  const c = e.target.closest('.card');
+  if(c) openDetail(c.dataset.id);
+});
+$('#sortSel').addEventListener('change', e => { state.sort = e.target.value; renderGrid(); });
+
+$('#menuBtn').addEventListener('click', () => openDrawer('menu'));
+$('#cartBtn').addEventListener('click', () => { renderCart(); openDrawer('cart'); });
+$('#logoBtn').addEventListener('click', e => { e.preventDefault(); setCat('ALL'); window.scrollTo({top:0, behavior:'smooth'}); });
+$('#searchBtn').addEventListener('click', openSearch);
+$('#talkBtn').addEventListener('click', () => {
+  if(KAKAO_URL) window.open(KAKAO_URL, '_blank', 'noopener');
+  else toast('카카오톡 채널 주소를 연결하면 바로 상담으로 연결됩니다.');
+});
+
+$('#addCart').addEventListener('click', addPicksToCart);
+$('#buyNow').addEventListener('click', () => {
+  if(!cur) return;
+  if(!sel.picks.length) return toast('색상과 사이즈를 선택해 주세요.');
+  goBuy(cur);
+});
+
+$('#scrim').addEventListener('click', closeAll);
+document.addEventListener('click', e => {
+  const cl = e.target.closest('[data-close]');
+  if(cl){
+    const t = cl.dataset.close;
+    if(t === 'search') closeSearch();
+    else { $('#scrim').classList.remove('on'); $('#' + t).classList.remove('on'); document.body.classList.remove('lock'); }
+  }
+  const co = e.target.closest('[data-cart-open]');
+  if(co){ renderCart(); openDrawer('cart'); }
+  const tg = e.target.closest('[data-toast]');
+  if(tg) toast(tg.dataset.toast);
+});
+
+/* 장바구니 내부 조작 */
+$('#cartList').addEventListener('click', e => {
+  const q = e.target.closest('[data-cart-qty]');
+  if(q){
+    const it = state.cart.find(c => c.key === q.dataset.key);
+    if(it){
+      it.qty = Math.min(20, Math.max(1, it.qty + Number(q.dataset.cartQty)));
+      renderCart();
+    }
+    return;
+  }
+  const d = e.target.closest('[data-del]');
+  if(d){
+    state.cart = state.cart.filter(c => c.key !== d.dataset.del);
+    renderCart();
+    if(!state.cart.length) toast('장바구니가 비었습니다.');
+  }
+});
+$('#cartBuy').addEventListener('click', () => {
+  const first = state.cart.map(c => byId(c.id)).find(p => p.link);
+  if(first) window.open(first.link, '_blank', 'noopener');
+  else toast('구매 링크가 연결된 상품이 없습니다. 스마트스토어 URL을 넣어 주세요.');
+});
+$('#cartKakao').addEventListener('click', () => {
+  if(KAKAO_URL) window.open(KAKAO_URL, '_blank', 'noopener');
+  else toast('카카오톡 채널 주소를 연결하면 바로 상담으로 연결됩니다.');
+});
+
+/* 검색 조작 */
+$('#searchTags').innerHTML = SEARCH_TAGS.map(t => `<button class="tag" data-tag="${t}"><i>#</i>${t}</button>`).join('');
+$('#searchTags').addEventListener('click', e => {
+  const t = e.target.closest('[data-tag]');
+  if(!t) return;
+  $('#searchInput').value = t.dataset.tag;
+  applyQuery(t.dataset.tag);
+  closeSearch();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+$('#searchInput').addEventListener('input', e => applyQuery(e.target.value));
+$('#searchInput').addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); closeSearch(); } });
+$('#searchGo').addEventListener('click', closeSearch);
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape'){
+    if($('#pdp').classList.contains('on')) closeDetail();
+    else { closeAll(); closeSearch(); }
+  }
+});
+
+/* Q&A 문의 버튼은 위임으로 처리 */
+$('#pdpIn').addEventListener('click', e => {
+  if(e.target.closest('#qnaBtn')){
+    if(KAKAO_URL) window.open(KAKAO_URL, '_blank', 'noopener');
+    else toast('카카오톡 채널 주소를 연결하면 문의로 바로 연결됩니다.');
+  }
+});
+
+/* 시작 */
+renderGrid();
+renderCart();
+</script>
+</body>
+</html>
