@@ -153,6 +153,20 @@
   .ft-links button{border-bottom:1px solid #D8D8DC;padding-bottom:1px}
   .copy{margin-top:14px;font-size:9.5px;color:#B6B6BA;letter-spacing:.06em}
 
+  /* 푸터 · 배송/교환 안내 */
+  .ft-ship{margin:14px 0 2px;border:1px solid var(--line);background:#FAFAFA;padding:13px 13px 11px}
+  .ft-ship .h{margin:0 0 9px;font-size:10.5px;font-weight:700;color:#333;letter-spacing:.04em}
+  .ft-ship dl{margin:0;display:grid;grid-template-columns:58px minmax(0,1fr);row-gap:6px}
+  .ft-ship dt{font-size:10px;color:#8A8A8E;letter-spacing:.01em}
+  .ft-ship dd{margin:0;font-size:10.5px;line-height:1.7;color:#4A4A4E}
+  .ft-ship dd b{font-weight:600;color:#111}
+  .ft-biz{margin:16px 0 0;padding-top:13px;border-top:1px solid var(--line)}
+  .ft .ft-biz p{margin:0 0 3px;font-size:10.5px;line-height:1.8;color:#8A8A8E}
+  .ft .ft-biz b{color:#5A5A5E;font-weight:600}
+  .ft-biz .sep{color:#D6D6DA;margin:0 3px}
+  .ft .ft-cs{margin:12px 0 0;font-size:10.5px;line-height:1.8;color:#8A8A8E}
+  @media (min-width:768px){.ft-ship{max-width:620px}}
+
   /* ── 공통 스크림 / 드로어 ── */
   .scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:100}
   .scrim.on{opacity:1;pointer-events:auto}
@@ -431,6 +445,43 @@
   }
   .toast.on{opacity:1;transform:translate(-50%,0)}
 
+  /* 약관 · 정책 모달 */
+  .law{position:fixed;inset:0;z-index:140;display:none}
+  .law.on{display:block}
+  .law-scrim{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+  .law-panel{
+    position:relative;z-index:1;display:flex;flex-direction:column;
+    width:min(680px,calc(100% - 24px));max-height:86vh;margin:7vh auto 0;background:#fff;
+    border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.3);animation:pop .22s ease-out;
+  }
+  .law-head{
+    flex:0 0 auto;height:54px;display:flex;align-items:center;justify-content:space-between;
+    padding:0 6px 0 18px;border-bottom:1px solid var(--line);
+  }
+  .law-head h2{margin:0;font-size:13px;font-weight:700;letter-spacing:.02em}
+  .law-body{flex:1 1 auto;overflow-y:auto;overscroll-behavior:contain;padding:18px 18px 30px}
+  .law-body .meta{margin:0 0 16px;font-size:10.5px;line-height:1.9;color:#9B9BA0}
+  .law-body h3{margin:20px 0 7px;font-size:11.5px;font-weight:700;color:#111;line-height:1.6}
+  .law-body h3:first-of-type{margin-top:0}
+  .law-body p{margin:0 0 7px;font-size:11px;line-height:1.9;color:#4A4A4E}
+  .law-body ol,.law-body ul{margin:0 0 8px;padding-left:15px}
+  .law-body li{margin:0 0 3px;font-size:11px;line-height:1.9;color:#4A4A4E}
+  .law-body li ul{margin:5px 0 4px}
+  .law-body b{font-weight:600;color:#111}
+  .law-body .tbl{width:100%;border-collapse:collapse;table-layout:fixed;margin:7px 0 13px;font-size:10.5px}
+  .law-body .tbl th,.law-body .tbl td{
+    border:1px solid #EDEDEF;padding:7px 8px;text-align:left;vertical-align:top;line-height:1.7;color:#333;
+  }
+  .law-body .tbl th{width:96px;background:#FAFAFA;color:#6A6A6E;font-weight:600}
+  .law-body .tbl tr > *:first-child{width:34%}
+  .law-body .note{margin:8px 0 12px;border:1px solid #EDEDEF;background:#FAFAFA;padding:10px 12px;font-size:10.5px;line-height:1.8;color:#5A5A5E}
+  @media (max-width:560px){
+    .law-panel{width:100%;height:100%;max-height:100%;margin:0;border-radius:0}
+    .law-body{padding:16px 16px 34px}
+    .law-body .tbl th{width:80px;white-space:normal}
+    .law-body .tbl tr > *:first-child{width:38%}
+  }
+
   /* 데스크톱 상세 2단 */
   @media (min-width:900px){
     .pdp-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;align-items:start}
@@ -508,12 +559,32 @@
   <div class="ft-in">
     <div class="ft-brand">luden.</div>
     <div class="ft-links">
-      <button data-toast="이용약관은 시안 단계라 아직 연결되지 않았습니다.">이용약관</button>
-      <button data-toast="개인정보처리방침은 시안 단계라 아직 연결되지 않았습니다.">개인정보처리방침</button>
-      <button data-toast="사업자정보 확인은 시안 단계라 아직 연결되지 않았습니다.">사업자정보확인</button>
+      <button data-law="terms">이용약관</button>
+      <button data-law="privacy">개인정보처리방침</button>
+      <button data-law="biz">사업자정보확인</button>
     </div>
-    <p class="biz"><b>상호명</b> 루덴 &nbsp;|&nbsp; <b>대표</b> 조규희 &nbsp;|&nbsp; <b>사업자등록번호</b> 219-06-13931</p>
-    <p>배송·교환 문의는 우측 하단 <b>TALK</b> 버튼으로 받습니다.</p>
+
+    <div class="ft-ship">
+      <p class="h">배송 · 교환 안내</p>
+      <dl>
+        <dt>배송</dt><dd>해외 사입 상품으로 <b>평균 10~14일</b>(영업일 기준 · 통관 기간 포함) 소요됩니다. 사입처 사정·통관·물류 상황에 따라 더 걸릴 수 있습니다.</dd>
+        <dt>배송비</dt><dd><b>3,000원</b> · 70,000원 이상 구매 시 <b>무료배송</b></dd>
+        <dt>통관</dt><dd>해외에서 반입되는 상품으로, 통관에 <b>개인통관고유부호</b>가 필요한 경우 주문 후 TALK로 안내드립니다.</dd>
+        <dt>청약철회</dt><dd>상품 수령일부터 <b>7일 이내</b> 청약철회(반품·교환)가 가능합니다.</dd>
+        <dt>반품 배송비</dt><dd><b>단순 변심</b>에 의한 반품·교환은 <b>왕복 배송비(편도 3,000원 기준)를 구매자</b>가 부담합니다.</dd>
+        <dt>불량·오배송</dt><dd>상품 하자·오배송·표시 내용 불일치는 <b>왕복 배송비 포함 전액 무료</b>로 교환 또는 환불해 드립니다.</dd>
+      </dl>
+    </div>
+
+    <div class="ft-biz">
+      <p><b>상호명</b> 루덴 <span class="sep">|</span> <b>대표자</b> 조규희 <span class="sep">|</span> <b>사업자등록번호</b> 219-06-13931</p>
+      <p><b>통신판매업 신고</b> 면제 (부가가치세법상 간이과세자)</p>
+      <p><b>사업장 주소</b> 충청남도 아산시 남산로 41, 풀하우스 201호</p>
+      <p><b>전화번호</b> 010-4404-7637 <span class="sep">|</span> <b>이메일</b> khcho0402@gmail.com</p>
+      <p><b>호스팅서비스 제공자</b> GitHub, Inc. (GitHub Pages)</p>
+    </div>
+
+    <p class="ft-cs">배송·교환 문의는 우측 하단 <b>TALK</b> 또는 <b>010-4404-7637</b>로 받습니다.</p>
     <div class="copy">© LUDEN. ALL RIGHTS RESERVED.</div>
   </div>
 </footer>
@@ -594,6 +665,18 @@
     <div class="stag-title">인기 검색어</div>
     <div class="tags" id="searchTags"></div>
     <div class="s-res" id="searchRes"></div>
+  </div>
+</div>
+
+<!-- ── 약관 · 정책 모달 ── -->
+<div class="law" id="law" role="dialog" aria-modal="true" aria-labelledby="lawTitle">
+  <div class="law-scrim" data-close="law"></div>
+  <div class="law-panel" role="document">
+    <div class="law-head">
+      <h2 id="lawTitle">이용약관</h2>
+      <button class="x-btn" data-close="law" aria-label="닫기">✕</button>
+    </div>
+    <div class="law-body" id="lawBody"></div>
   </div>
 </div>
 
@@ -1377,8 +1460,11 @@ function openDetail(id){
         <div class="ship">
           <dl>
             <dt>배송비</dt><dd><b>3,000원</b> · 70,000원 이상 구매 시 <b>무료배송</b></dd>
-            <dt>배송기간</dt><dd>해외 사입 배송 상품으로 배송까지 약 <b>10~14일(2주)</b> 소요될 수 있습니다</dd>
+            <dt>배송기간</dt><dd>해외 사입 상품으로 <b>평균 10~14일</b>(영업일 기준 · 통관 기간 포함) 소요됩니다</dd>
+            <dt>통관</dt><dd>해외 반입 상품으로, 통관에 <b>개인통관고유부호</b>가 필요한 경우 TALK로 안내드립니다</dd>
             <dt>출고</dt><dd>사입처 재고 확인 후 순차 출고 (평일 기준)</dd>
+            <dt>청약철회</dt><dd>수령일부터 <b>7일 이내</b> 가능 · <b>단순 변심</b> 시 왕복 배송비(편도 3,000원 기준) 구매자 부담</dd>
+            <dt>불량·오배송</dt><dd>왕복 배송비 포함 <b>전액 무료</b> 교환·환불</dd>
           </dl>
           <div class="warn"><b>무재고 테스트 운영 안내</b> · 주문 후 사입처에서 매입하는 방식이라 품절 시 100% 환불 처리됩니다. 급한 일정이 있으시면 주문 전 TALK로 재고를 먼저 확인해 주세요.</div>
         </div>
@@ -1455,15 +1541,27 @@ function openDetail(id){
     </section>
 
     <section class="psec" id="sec-cs">
-      <h3>CS <em>교환 · 반품 · 사업자 정보</em></h3>
+      <h3>CS <em>배송 · 교환 · 사업자 정보</em></h3>
       <div class="cs-grid">
-        <div class="cs-row"><span class="k">교환·반품</span><span class="v">수령 후 7일 이내 접수. 실물 확인이 가능한 불량(오염·봉제·지퍼·구멍)만 가능하며, 색상·소재·사이즈 차이는 사입 구조상 반품이 어렵습니다.</span></div>
-        <div class="cs-row"><span class="k">품절·지연</span><span class="v">사입처 재고 변동 시 알림 후 전액 환불 처리됩니다.</span></div>
+        <div class="cs-row"><span class="k">배송기간</span><span class="v">해외 사입 상품으로 <b>평균 10~14일</b>(영업일 기준, 통관 기간 포함) 소요됩니다.</span></div>
         <div class="cs-row"><span class="k">배송비</span><span class="v">3,000원 · 70,000원 이상 무료배송</span></div>
-        <div class="cs-row"><span class="k">상호</span><span class="v">루덴</span></div>
-        <div class="cs-row"><span class="k">대표</span><span class="v">조규희</span></div>
+        <div class="cs-row"><span class="k">통관</span><span class="v">해외에서 반입되는 상품으로, 통관에 개인통관고유부호가 필요한 경우 주문 후 TALK로 안내드립니다.</span></div>
+        <div class="cs-row"><span class="k">청약철회</span><span class="v">상품 수령일부터 <b>7일 이내</b> 반품·교환이 가능합니다.</span></div>
+        <div class="cs-row"><span class="k">반품 배송비</span><span class="v">단순 변심에 의한 반품·교환은 <b>왕복 배송비(편도 3,000원 기준)를 구매자</b>가 부담합니다.</span></div>
+        <div class="cs-row"><span class="k">불량·오배송</span><span class="v">상품 하자·오배송·표시 내용 불일치는 <b>왕복 배송비 포함 전액 무료</b>로 교환 또는 환불해 드립니다.</span></div>
+        <div class="cs-row"><span class="k">품절·지연</span><span class="v">사입처 재고 변동 시 알림 후 전액 환불 처리됩니다.</span></div>
+        <div class="cs-row"><span class="k">상호명</span><span class="v">루덴</span></div>
+        <div class="cs-row"><span class="k">대표자</span><span class="v">조규희</span></div>
         <div class="cs-row"><span class="k">사업자등록번호</span><span class="v">219-06-13931</span></div>
-        <div class="cs-row"><span class="k">문의</span><span class="v">카카오톡 채널 (우측 하단 TALK)</span></div>
+        <div class="cs-row"><span class="k">통신판매업</span><span class="v">신고 면제 (부가가치세법상 간이과세자)</span></div>
+        <div class="cs-row"><span class="k">사업장 주소</span><span class="v">충청남도 아산시 남산로 41, 풀하우스 201호</span></div>
+        <div class="cs-row"><span class="k">전화·이메일</span><span class="v">010-4404-7637 · khcho0402@gmail.com</span></div>
+        <div class="cs-row"><span class="k">호스팅</span><span class="v">GitHub, Inc. (GitHub Pages)</span></div>
+        <div class="cs-row"><span class="k">문의</span><span class="v">카카오톡 채널 (우측 하단 TALK) · 전화 · 이메일</span></div>
+      </div>
+      <div class="law-links" style="display:flex;gap:14px;margin-top:14px;font-size:10.5px;color:#5A5A5E">
+        <button data-law="terms" style="border-bottom:1px solid #D8D8DC;padding-bottom:1px">이용약관</button>
+        <button data-law="privacy" style="border-bottom:1px solid #D8D8DC;padding-bottom:1px">개인정보처리방침</button>
       </div>
     </section>
   `;
@@ -1667,6 +1765,211 @@ function closeAll(){
 }
 
 /* ============================================================
+   약관 · 개인정보처리방침 · 사업자정보
+   ============================================================ */
+const LAW = {
+  terms: { title:'이용약관', html:`
+<p class="meta">루덴(LUDEN) 온라인 스토어 이용약관<br>공고일 2026년 11월 19일 · 시행일 2026년 11월 19일</p>
+
+<h3>제1조 (목적)</h3>
+<p>이 약관은 루덴(이하 "회사")이 운영하는 루덴 온라인 스토어(이하 "스토어")의 상품 판매 및 이에 부수하는 서비스 이용과 관련하여 회사와 이용자 간의 권리·의무 및 책임 사항을 정하는 것을 목적으로 합니다.</p>
+
+<h3>제2조 (정의)</h3>
+<ol>
+<li>"이용자"란 이 약관에 따라 스토어가 제공하는 서비스를 이용하는 고객을 말합니다.</li>
+<li>"해외 사입 상품"이란 회사가 해외 사입처에서 매입하여 국내로 반입·판매하는 상품을 말하며, 주문 후 사입처에서 매입하는 무재고 운영이 적용될 수 있습니다.</li>
+<li>"개인통관고유부호"란 해외에서 반입되는 물품의 통관을 위해 관세청이 개인에게 부여하는 고유 식별번호를 말합니다.</li>
+</ol>
+
+<h3>제3조 (약관의 게시와 개정)</h3>
+<ol>
+<li>회사는 이 약관을 스토어 하단에 게시하고, 이용자가 언제든지 확인할 수 있도록 합니다.</li>
+<li>회사는 「전자상거래 등에서의 소비자보호에 관한 법률」 등 관련 법령을 위반하지 않는 범위에서 이 약관을 개정할 수 있습니다.</li>
+<li>약관을 개정하는 경우 회사는 적용 일자와 개정 사유를 명시하여 적용일 7일 전부터 스토어에 공지합니다. 다만 이용자에게 불리한 내용으로 변경되는 경우에는 30일 전부터 공지합니다.</li>
+</ol>
+
+<h3>제4조 (사업자 정보)</h3>
+<table class="tbl">
+<tr><th>상호명</th><td>루덴</td></tr>
+<tr><th>대표자</th><td>조규희</td></tr>
+<tr><th>사업자등록번호</th><td>219-06-13931</td></tr>
+<tr><th>통신판매업 신고</th><td>면제 (부가가치세법상 간이과세자)</td></tr>
+<tr><th>사업장 주소</th><td>충청남도 아산시 남산로 41, 풀하우스 201호</td></tr>
+<tr><th>전화번호</th><td>010-4404-7637</td></tr>
+<tr><th>이메일</th><td>khcho0402@gmail.com</td></tr>
+<tr><th>호스팅서비스 제공자</th><td>GitHub, Inc. (GitHub Pages)</td></tr>
+</table>
+
+<h3>제5조 (주문 및 계약의 성립)</h3>
+<ol>
+<li>이용자는 스토어에서 상품의 색상·사이즈·수량을 확인한 뒤 카카오톡 채널(TALK), 전화 또는 이메일로 주문합니다.</li>
+<li>계약은 회사가 주문 내용과 재고·사입 가능 여부를 확인하고 이용자에게 주문 확정을 알린 시점에 성립합니다.</li>
+<li>해외 사입 상품은 주문 후 사입처에서 매입하는 무재고 운영 방식으로, 주문 확정 시점에 사입처 재고가 없거나 가격·옵션이 변동된 경우 회사는 지체 없이 이를 알리고 이용자의 동의를 받거나 전액 환불합니다.</li>
+</ol>
+
+<h3>제6조 (가격 및 결제)</h3>
+<ol>
+<li>상품 가격은 스토어에 표시된 판매가를 기준으로 하며 부가가치세를 포함합니다. 배송비는 별도이며 70,000원 이상 구매 시 무료입니다.</li>
+<li>결제는 회사가 안내하는 계좌이체 등 회사가 지정한 방법으로 합니다. 결제가 확인되지 않은 주문은 사입이 진행되지 않습니다.</li>
+</ol>
+
+<h3>제7조 (배송 및 통관)</h3>
+<ol>
+<li>해외 사입 상품은 주문 확정 및 결제 확인 후 사입처에서 매입하여 발송되며, 통관 기간을 포함하여 배송에 평균 10~14일이 소요됩니다. 사입처 사정, 통관 지연, 물류 사정에 따라 더 걸릴 수 있습니다.</li>
+<li>통관을 위해 개인통관고유부호가 필요한 경우 회사는 이용자에게 이를 요청할 수 있으며, 이용자는 정확한 정보를 제공해야 합니다. 이용자가 제공한 정보의 오류로 통관이 지연되거나 반송되는 경우 그 비용은 이용자가 부담합니다.</li>
+<li>재고가 없거나 배송이 불가능한 경우 회사는 즉시 이용자에게 알리고 결제 금액 전액을 환불합니다.</li>
+</ol>
+
+<h3>제8조 (청약철회 및 교환·반품)</h3>
+<ol>
+<li>이용자는 「전자상거래 등에서의 소비자보호에 관한 법률」에 따라 상품을 수령한 날부터 7일 이내에 청약철회를 할 수 있습니다.</li>
+<li>단순 변심에 의한 반품·교환의 경우 상품의 왕복 배송비(편도 배송비 3,000원 기준)는 이용자가 부담합니다.</li>
+<li>상품의 하자, 오배송, 표시·광고 내용과의 불일치로 인한 교환·반품의 경우 왕복 배송비를 포함한 모든 비용을 회사가 부담하며, 전액 무료로 교환 또는 환불 처리합니다.</li>
+<li>다음 각 호의 경우에는 청약철회가 제한될 수 있습니다.
+  <ul>
+  <li>이용자의 사용 또는 일부 소비로 상품의 가치가 현저히 감소한 경우</li>
+  <li>시간의 경과로 재판매가 곤란할 정도로 상품의 가치가 현저히 감소한 경우</li>
+  <li>상품의 택(TAG)·포장을 훼손한 경우</li>
+  <li>해외 사입 상품의 특성상 색상·소재·사이즈의 차이가 사입처가 표시한 기준 범위 안에 있는 경우</li>
+  </ul>
+</li>
+<li>청약철회는 카카오톡 채널(TALK), 전화(010-4404-7637), 이메일(khcho0402@gmail.com)로 접수할 수 있습니다.</li>
+</ol>
+
+<h3>제9조 (환불)</h3>
+<ol>
+<li>회사는 환불 사유가 발생한 날부터 3영업일 이내에 결제 금액을 환불합니다.</li>
+<li>카드 결제를 취소하는 경우 결제업체의 처리 기간에 따라 환불이 지연될 수 있습니다.</li>
+</ol>
+
+<h3>제10조 (지식재산권 및 금지행위)</h3>
+<p>스토어의 상품 정보, 이미지, 디자인, 상표 등에 관한 권리는 회사 또는 정당한 권리자에게 있습니다. 이용자는 회사의 사전 동의 없이 이를 복제·배포·판매하거나 스토어의 정상 운영을 방해하는 행위를 할 수 없습니다.</p>
+
+<h3>제11조 (개인정보 보호)</h3>
+<p>회사는 이용자의 개인정보를 「개인정보 보호법」 및 관련 법령에 따라 처리하며, 자세한 내용은 스토어 하단의 <b>개인정보처리방침</b>에서 확인할 수 있습니다.</p>
+
+<h3>제12조 (분쟁의 해결 및 관할)</h3>
+<ol>
+<li>회사와 이용자는 상품 거래에 관한 분쟁을 원만하게 해결하기 위해 성실히 협의합니다.</li>
+<li>협의가 이루어지지 않는 경우 「전자상거래 등에서의 소비자보호에 관한 법률」에 따른 소비자분쟁조정위원회에 조정을 신정할 수 있습니다.</li>
+<li>소송이 제기되는 경우 관할 법원은 「민사소송법」이 정한 바에 따릅니다.</li>
+</ol>
+
+<h3>부칙</h3>
+<p>이 약관은 2026년 11월 19일부터 적용합니다.</p>
+` },
+
+  privacy: { title:'개인정보처리방침', html:`
+<p class="meta">루덴(LUDEN) 개인정보처리방침<br>공고일 2026년 11월 19일 · 시행일 2026년 11월 19일</p>
+
+<h3>제1조 (총칙)</h3>
+<p>루덴(이하 "회사")은 「개인정보 보호법」 등 관련 법령에 따라 이용자의 개인정보를 보호하고, 이와 관련한 고충을 신속하게 처리할 수 있도록 다음과 같이 개인정보처리방침을 수립·공개합니다.</p>
+
+<h3>제2조 (수집하는 개인정보 항목 및 수집 방법)</h3>
+<table class="tbl">
+<tr><th>구분</th><th>수집 항목</th></tr>
+<tr><td>주문·상담</td><td>이름, 연락처(휴대전화), 이메일, 주문 상품·옵션·수량, 문의 내용</td></tr>
+<tr><td>배송</td><td>수령인 이름, 연락처, 배송지 주소, 배송 요청사항</td></tr>
+<tr><td>통관(해외 사입)</td><td>개인통관고유부호 (통관이 필요한 경우에 한함)</td></tr>
+<tr><td>결제·환불</td><td>입금자명, 입금 일시, 환불 계좌 정보(환불이 필요한 경우에 한함)</td></tr>
+<tr><td>자동 수집</td><td>접속 기록, 브라우저 정보, 장바구니 정보(이용자 기기에 저장)</td></tr>
+</table>
+<p>회사는 카카오톡 채널 상담, 전화, 이메일, 스토어를 통한 주문 과정에서 위 정보를 수집합니다.</p>
+
+<h3>제3조 (개인정보의 처리 목적)</h3>
+<ol>
+<li>주문 확인, 결제 확인, 상품 사입 및 배송, 통관 안내</li>
+<li>교환·반품·환불 처리 및 고객 상담</li>
+<li>거래 관련 법정 기록의 보관</li>
+</ol>
+<p>회사는 위 목적 이외의 용도로 개인정보를 이용하지 않으며, 이용 목적이 변경되는 경우 관련 법령에 따라 별도의 동의를 받습니다.</p>
+
+<h3>제4조 (개인정보의 보유 및 이용 기간)</h3>
+<table class="tbl">
+<tr><th>보관 항목</th><th>보유 기간</th><th>근거</th></tr>
+<tr><td>계약 또는 청약철회 등에 관한 기록</td><td>5년</td><td>전자상거래법</td></tr>
+<tr><td>대금결제 및 재화공급에 관한 기록</td><td>5년</td><td>전자상거래법</td></tr>
+<tr><td>소비자의 불만 또는 분쟁처리에 관한 기록</td><td>3년</td><td>전자상거래법</td></tr>
+<tr><td>표시·광고에 관한 기록</td><td>6개월</td><td>전자상거래법</td></tr>
+<tr><td>웹사이트 방문 기록</td><td>3개월</td><td>통신비밀보호법</td></tr>
+<tr><td>수령인 정보·개인통관고유부호</td><td>배송·통관 완료 시까지 (완료 후 지체 없이 파기)</td><td>처리 목적 달성</td></tr>
+</table>
+
+<h3>제5조 (개인정보의 파기 절차 및 방법)</h3>
+<ol>
+<li>보유 기간이 끝나거나 처리 목적이 달성된 개인정보는 지체 없이 파기합니다.</li>
+<li>전자적 파일은 복구할 수 없는 방법으로 삭제하고, 종이 문서는 분쇄 또는 소각합니다.</li>
+</ol>
+
+<h3>제6조 (개인정보의 제3자 제공 및 처리 위탁)</h3>
+<p>회사는 배송과 통관을 위해 필요한 범위 안에서 다음 업무를 외부에 위탁하거나 제3자에게 제공합니다.</p>
+<table class="tbl">
+<tr><th>수탁자</th><th>위탁 업무</th><th>제공 항목</th></tr>
+<tr><td>해외 사입처·국제 운송업체</td><td>상품 매입·발송·국제 배송</td><td>수령인 이름, 연락처, 주소, 개인통관고유부호</td></tr>
+<tr><td>국내 배송업체(택배사)</td><td>국내 배송</td><td>수령인 이름, 연락처, 주소</td></tr>
+<tr><td>GitHub, Inc.</td><td>웹사이트 호스팅(GitHub Pages)</td><td>접속 기록 등 자동 수집 정보</td></tr>
+<tr><td>카카오톡 채널</td><td>고객 상담</td><td>상담 과정에서 이용자가 제공한 정보</td></tr>
+</table>
+<p>위탁 또는 제공은 처리 목적을 달성하는 데 필요한 최소한의 범위에서만 이루어지며, 목적 달성 후에는 지체 없이 파기합니다.</p>
+
+<h3>제7조 (정보주체의 권리·의무)</h3>
+<p>이용자는 언제든지 자신의 개인정보에 대한 열람, 정정, 삭제, 처리 정지를 요청할 수 있습니다. 요청은 아래 개인정보 보호책임자에게 연락하시면 되며, 회사는 지체 없이 처리합니다. 다만 법령에 따라 보관이 필요한 정보는 일정 기간 보관한 뒤 파기합니다.</p>
+
+<h3>제8조 (쿠키 및 로컬 저장소)</h3>
+<p>스토어는 회원가입·로그인 없이 운영되며, 장바구니 정보는 이용자의 브라우저 로컬 저장소에만 저장됩니다. 이용자는 브라우저 설정에서 저장된 정보를 삭제할 수 있습니다.</p>
+
+<h3>제9조 (개인정보 보호책임자)</h3>
+<table class="tbl">
+<tr><th>성명</th><td>조규희</td></tr>
+<tr><th>직책</th><td>대표</td></tr>
+<tr><th>전화번호</th><td>010-4404-7637</td></tr>
+<tr><th>이메일</th><td>khcho0402@gmail.com</td></tr>
+</table>
+<p>개인정보 침해에 대한 신고나 상담이 필요한 경우 아래 기관에도 문의할 수 있습니다.</p>
+<ul>
+<li>개인정보침해신고센터 (privacy.kisa.or.kr / 국번 없이 118)</li>
+<li>개인정보분쟁조정위원회 (www.kopico.go.kr / 1833-6972)</li>
+</ul>
+
+<h3>제10조 (개인정보처리방침의 변경)</h3>
+<p>이 방침의 내용이 추가·삭제·수정되는 경우 회사는 변경 사항을 스토어에 공지합니다.</p>
+
+<h3>부칙</h3>
+<p>이 개인정보처리방침은 2026년 11월 19일부터 적용합니다.</p>
+` },
+
+  biz: { title:'사업자정보확인', html:`
+<p class="meta">루덴(LUDEN) 사업자 정보<br>「전자상거래 등에서의 소비자보호에 관한 법률」 제10조에 따른 표시 사항입니다.</p>
+<table class="tbl">
+<tr><th>상호명</th><td>루덴</td></tr>
+<tr><th>대표자</th><td>조규희</td></tr>
+<tr><th>사업자등록번호</th><td>219-06-13931</td></tr>
+<tr><th>통신판매업 신고</th><td>면제 (부가가치세법상 간이과세자)</td></tr>
+<tr><th>사업장 주소</th><td>충청남도 아산시 남산로 41, 풀하우스 201호</td></tr>
+<tr><th>전화번호</th><td>010-4404-7637</td></tr>
+<tr><th>이메일</th><td>khcho0402@gmail.com</td></tr>
+<tr><th>호스팅서비스 제공자</th><td>GitHub, Inc. (GitHub Pages)</td></tr>
+</table>
+<p class="note">통신판매업 신고는 「전자상거래 등에서의 소비자보호에 관한 법률 시행령」에 따라 부가가치세법상 간이과세자로서 면제 대상에 해당합니다. 사업자등록번호는 국세청 홈택스에서 확인할 수 있습니다.</p>
+<p>배송·교환·환불 기준은 <b>이용약관</b> 제7조~제9조와 <b>개인정보처리방침</b>에서 확인할 수 있습니다.</p>
+` }
+};
+
+function openLaw(kind){
+  const d = LAW[kind];
+  if(!d) return;
+  $('#lawTitle').textContent = d.title;
+  $('#lawBody').innerHTML = d.html;
+  $('#law').classList.add('on');
+  document.body.classList.add('lock');
+  $('#lawBody').scrollTop = 0;
+}
+function closeLaw(){
+  $('#law').classList.remove('on');
+  document.body.classList.remove('lock');
+}
+
+/* ============================================================
    이벤트
    ============================================================ */
 function setCat(cat){
@@ -1715,12 +2018,15 @@ document.addEventListener('click', e => {
   if(cl){
     const t = cl.dataset.close;
     if(t === 'search') closeSearch();
+    else if(t === 'law') closeLaw();
     else { $('#scrim').classList.remove('on'); $('#' + t).classList.remove('on'); document.body.classList.remove('lock'); }
   }
   const co = e.target.closest('[data-cart-open]');
   if(co){ renderCart(); openDrawer('cart'); }
   const tg = e.target.closest('[data-toast]');
   if(tg) toast(tg.dataset.toast);
+  const lw = e.target.closest('[data-law]');
+  if(lw){ e.preventDefault(); openLaw(lw.dataset.law); }
 });
 
 /* 장바구니 내부 조작 */
@@ -1767,7 +2073,8 @@ $('#searchGo').addEventListener('click', closeSearch);
 
 document.addEventListener('keydown', e => {
   if(e.key === 'Escape'){
-    if($('#pdp').classList.contains('on')) closeDetail();
+    if($('#law').classList.contains('on')) closeLaw();
+    else if($('#pdp').classList.contains('on')) closeDetail();
     else { closeAll(); closeSearch(); }
   }
 });
