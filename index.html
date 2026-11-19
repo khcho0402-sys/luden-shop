@@ -568,7 +568,7 @@
       <dl>
         <dt>배송</dt><dd>주문 후 <b>1~2일 내 출고</b> · 영업일 기준 <b>2~3일 내 도착</b></dd>
         <dt>배송비</dt><dd><b>3,000원</b> · 70,000원 이상 구매 시 <b>무료배송</b></dd>
-        <dt>교환·반품</dt><dd>수령일부터 <b>7일 이내</b> 접수 · 단순 변심은 왕복 배송비(편도 3,000원) 구매자 부담 · 하자·오배송은 전액 무료</dd>
+        <dt>교환·반품</dt><dd>수령일부터 <b>7일 이내</b> 접수 · 단순 변심은 반품 4,000원 · 교환 8,000원 구매자 부담 · 하자·오배송은 전액 무료</dd>
       </dl>
     </div>
 
@@ -580,16 +580,16 @@
       <p><b>호스팅서비스 제공자</b> GitHub, Inc. (GitHub Pages)</p>
     </div>
 
-    <p class="ft-cs">배송·교환 문의는 우측 하단 <b>TALK</b> 또는 <b>010-4404-7637</b>로 받습니다.</p>
+    <p class="ft-cs">배송·교환 문의는 우측 하단 <b>문의</b> 버튼 또는 <b>010-4404-7637</b>로 받습니다.</p>
     <div class="copy">© LUDEN. ALL RIGHTS RESERVED.</div>
   </div>
 </footer>
 
-<button class="talk" id="talkBtn" aria-label="카카오톡 문의">
+<button class="talk" id="talkBtn" aria-label="문의하기">
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round">
     <path d="M21 11.6c0 4.1-4 7.4-9 7.4-1 0-2-.1-2.9-.4L4 21l1.2-3.5C3.6 16 2.5 13.9 2.5 11.6c0-4.1 4-7.4 9-7.4s9.5 3.3 9.5 7.4Z"/>
   </svg>
-  TALK
+  문의
 </button>
 
 <!-- ── 스크림 / 메뉴 드로어 ── -->
@@ -603,9 +603,9 @@
     <div class="m-brand">luden.</div>
     <div class="m-sec" id="menuCats"></div>
     <div class="m-sec">
-      <button class="m-item" data-toast="회원가입 없이 누구나 주문하실 수 있습니다."><span>비회원 주문 안내</span><span class="n">→</span></button>
-      <button class="m-item" data-toast="주문 조회는 TALK으로 문의해 주시면 바로 확인해 드립니다."><span>주문조회</span><span class="n">→</span></button>
-      <button class="m-item" data-toast="전화 010-4404-7637 · 카카오톡 TALK으로 문의하실 수 있습니다."><span>고객센터 · 문의</span><span class="n">→</span></button>
+      <button class="m-item" data-toast="상품의 '바로 구매'를 누르면 루덴 스마트스토어에서 결제하실 수 있습니다."><span>주문 방법 안내</span><span class="n">→</span></button>
+      <button class="m-item" data-toast="주문·배송 조회는 스마트스토어 > 마이페이지 > 주문내역에서 확인하실 수 있습니다."><span>주문조회</span><span class="n">→</span></button>
+      <button class="m-item" data-toast="전화 010-4404-7637 · 이메일 khcho0402@gmail.com · 스마트스토어 Q&amp;A"><span>고객센터 · 문의</span><span class="n">→</span></button>
     </div>
     <div class="m-note">루덴 · 대표 조규희<br>사업자등록번호 219-06-13931</div>
   </div>
@@ -624,7 +624,7 @@
     <div class="sum"><span class="k">총 결제금액</span><span class="v" id="cartTotal">0원</span></div>
     <div class="btns">
       <button class="btn pri" id="cartBuy">주문하기</button>
-      <button class="btn kakao" id="cartKakao">카톡 문의</button>
+      <button class="btn kakao" id="cartKakao">문의하기</button>
     </div>
   </div>
 </aside>
@@ -727,7 +727,7 @@ const PRODUCTS = [
         ['2XL','175–183','72.5–80kg','여유'],
         ['3XL','180–185','80–87.5kg','여유']
       ],
-      note:'권장 사이즈 기준입니다. 오버핏이라 평소 사이즈에서 한 치수 내리셔도 여유가 있습니다. 상세 실측이 필요하시면 주문 전 TALK로 문의해 주세요.'
+      note:'권장 사이즈 기준입니다. 오버핏이라 평소 사이즈에서 한 치수 내리셔도 여유가 있습니다. 상세 실측이 필요하시면 우측 하단 문의 버튼으로 알려 주세요.'
     },
     fabric:[
       ['겉감','폴리에스터 60% (모직 터치 원단)'],
@@ -748,7 +748,7 @@ const PRODUCTS = [
       '겉감은 폴리에스터 60%의 모직 터치 원단입니다. 촉감은 모직에 가깝고 관리가 쉬운 쪽입니다.'
     ],
     care:'드라이클리닝을 권장합니다. 오염이 묻었을 때 물세탁하면 안감과 겉감 수축 차이가 날 수 있습니다.',
-    link:''
+    link:'https://smartstore.naver.com/ruden/products/13883912572'
   },
 
   /* ── 2. 토끼털 혼방 솔리드 니트 가디건 (5323820) ── */
@@ -793,7 +793,7 @@ const PRODUCTS = [
       '혼용률은 토끼털 혼방입니다. 촉감은 토끼털 계열의 부드러운 파일감입니다.'
     ],
     care:'찬물 단독 세탁 또는 드라이클리닝을 권장합니다. 건조기 사용은 피하고 눕혀서 그늘 건조해 주세요.',
-    link:''
+    link:'https://smartstore.naver.com/ruden/products/13883912573'
   },
 
   /* ── 3. 폴리에스터 하프 집업 니트 (5436457) ── */
@@ -818,7 +818,7 @@ const PRODUCTS = [
         ['2XL','170–180','65–72.5kg','정핏'],
         ['3XL','175–185','72.5–82.5kg','정핏']
       ],
-      note:'권장 사이즈 기준입니다. 루즈핏이라 넉넉하게 입으시려면 한 치수 크게 주문하시는 걸 권합니다. 상세 실측이 필요하시면 주문 전 TALK로 문의해 주세요.'
+      note:'권장 사이즈 기준입니다. 루즈핏이라 넉넉하게 입으시려면 한 치수 크게 주문하시는 걸 권합니다. 상세 실측이 필요하시면 우측 하단 문의 버튼으로 알려 주세요.'
     },
     fabric:[
       ['겉감','폴리에스터 혼방'],
@@ -838,7 +838,7 @@ const PRODUCTS = [
       '원단은 폴리에스터 주원단의 화학섬유 혼방입니다.'
     ],
     care:'찬물에 중성세제로 단독 세탁하고, 눕혀서 그늘 건조해 주세요. 건조기 사용은 피합니다.',
-    link:''
+    link:'https://smartstore.naver.com/ruden/products/13883912574'
   },
 
   /* ── 4. 코듀로이 라펠 두꺼운 숏 자켓 (5432742) ── */
@@ -863,7 +863,7 @@ const PRODUCTS = [
         ['2XL','70–77.5kg','여유'],
         ['3XL','77.5–90kg','여유']
       ],
-      note:'권장 사이즈 기준이며 오차 범위는 3cm입니다. 기장은 숏(40~50cm)입니다. 상세 실측이 필요하시면 주문 전 TALK로 문의해 주세요.'
+      note:'권장 사이즈 기준이며 오차 범위는 3cm입니다. 기장은 숏(40~50cm)입니다. 상세 실측이 필요하시면 우측 하단 문의 버튼으로 알려 주세요.'
     },
     fabric:[
       ['겉감','폴리에스터 100% (코듀로이 조직)'],
@@ -884,7 +884,7 @@ const PRODUCTS = [
       '받으시면 바로 검품해 주세요. 하자나 오배송이 있으면 왕복 배송비 없이 교환·환불해 드립니다.'
     ],
     care:'드라이클리닝을 권장합니다. 충전재가 들어 있어 물세탁하면 충전이 뭉칠 수 있습니다.',
-    link:''
+    link:'https://smartstore.naver.com/ruden/products/13883912575'
   },
 
   /* ── 5. 폴리에스터 스트레이트 핏 신축성 조거 팬츠 (4833069) ── */
@@ -909,7 +909,7 @@ const PRODUCTS = [
         ['2XL','107','94','124','58'],
         ['3XL','109','98','128','60']
       ],
-      note:'오차는 1~3cm입니다. 허리·엉덩이·밑단은 둘레 기준이고 허리는 밴딩이라 편차가 있습니다. <b>S 사이즈 실측은 비워 두었으니</b> 주문 전 TALK로 문의해 주시면 확인해서 알려드립니다.'
+      note:'오차는 1~3cm입니다. 허리·엉덩이·밑단은 둘레 기준이고 허리는 밴딩이라 편차가 있습니다. <b>S 사이즈 실측은 비워 두었으니</b> 문의 버튼으로 알려 주시면 확인해서 안내드립니다.'
     },
     fabric:[
       ['겉감','폴리에스터 70–80%'],
@@ -930,7 +930,7 @@ const PRODUCTS = [
       '표기 색상은 그레이·블랙입니다. 단독으로 입어도, 코트 안에 받쳐 입어도 잘 붙습니다.'
     ],
     care:'허리 밴딩이 들어간 팬츠라 찬물 단독 세탁 후 눕혀서 그늘 건조해 주세요. 건조기는 밴딩과 원단 수축에 영향을 줄 수 있습니다.',
-    link:''
+    link:'https://smartstore.naver.com/ruden/products/13883912576'
   },
 
   /* ── 6. 헤비 그레이 후드 티셔츠 (5489866) ── */
@@ -957,7 +957,7 @@ const PRODUCTS = [
         ['4XL','80–90kg','175–182','여유'],
         ['5XL','90–100kg','178–185','여유']
       ],
-      note:'cm 실측표 대신 착용 기준 권장표로 안내드립니다. 기모 안감의 헤비 원단(180–250g)이라 같은 표기 사이즈에서도 여유 있게 나옵니다. 상세 실측이 필요하시면 TALK로 문의해 주세요.'
+      note:'cm 실측표 대신 착용 기준 권장표로 안내드립니다. 기모 안감의 헤비 원단(180–250g)이라 같은 표기 사이즈에서도 여유 있게 나옵니다. 상세 실측이 필요하시면 문의 버튼으로 알려 주세요.'
     },
     fabric:[
       ['겉감','폴리에스터 91–95%'],
@@ -977,7 +977,7 @@ const PRODUCTS = [
       '그레이와 블랙 두 색 모두 안감 기모로 나옵니다. 그레이는 사진처럼 톤이 밝아 데님·블랙 팬츠 어디에나 붙습니다.'
     ],
     care:'기모 안감이 있어 뒤집어서 찬물 세탁하고 건조기는 피해 주세요. 프린트 부분에는 다림질을 직접 대지 마세요.',
-    link:''
+    link:'https://smartstore.naver.com/ruden/products/13883912577'
   },
 
   /* ── 7. 폴리에스터 후드 집업 기모 플리스 (4734945) ── */
@@ -993,7 +993,7 @@ const PRODUCTS = [
     colors:[{n:'그레이',c:'#8E8E8A'},{n:'그린',c:'#93A392'},{n:'카키',c:'#C0AE8B'}],
     sizes:['M','L','XL','2XL'],
     sizeTable:null,
-    sizeNote:'M·L·XL·2XL 네 사이즈로 운영합니다. 기모 플리스에 루즈핏이라 평소 사이즈 그대로를 권합니다. 상세 실측이 필요하시면 주문 전 TALK로 문의해 주세요 — 확인해서 알려드립니다.',
+    sizeNote:'M·L·XL·2XL 네 사이즈로 운영합니다. 기모 플리스에 루즈핏이라 평소 사이즈 그대로를 권합니다. 상세 실측이 필요하시면 우측 하단 문의 버튼으로 알려 주세요 — 확인해서 알려드립니다.',
     fabric:[
       ['원단','플리스 기모 조직'],
       ['두께','기모 · 겨울'],
@@ -1012,7 +1012,7 @@ const PRODUCTS = [
       '그레이·그린·카키 세 색입니다. 그린은 사진처럼 채도가 낮은 세이지 톤이라 안에 흰 티를 받치면 깔끔합니다.'
     ],
     care:'플리스 기모 조직이라 세탁망에 넣어 단독 세탁하고, 건조기 대신 눕혀서 그늘 건조해 주세요.',
-    link:''
+    link:'https://smartstore.naver.com/ruden/products/13883912578'
   },
 
   /* ── 8. 폴리에스터 라운드넥 루즈핏 니트 스웨터 (5346457) ── */
@@ -1059,7 +1059,7 @@ const PRODUCTS = [
       '촬영 컷에는 옵션에 없는 색(올리브 그린 등)이 섞여 있습니다. 실제 주문 색상은 <b>옵션명 기준</b>으로 봐 주시면 됩니다.'
     ],
     care:'니트는 접어서 보관하고, 세탁할 때는 망에 넣어 단독 세탁해 주세요. 늘어짐 방지를 위해 옷걸이에 걸어 두지 마세요.',
-    link:''
+    link:'https://smartstore.naver.com/ruden/products/13883912579'
   },
 
   /* ── 9. 스판 혼방 하이넥 골지 니트 (5352634) ── */
@@ -1104,10 +1104,10 @@ const PRODUCTS = [
     ],
     desc:[
       '촬영 컷은 회색(중간 회색) 기준입니다. 다크 톤은 블랙·네이비, 포인트로는 와인·카멜을 권합니다.',
-      '혼용률은 레이온 50% · 폴리에스터 25% · 스판덱스 25%입니다. 늘어짐·보풀은 TALK로 문의해 주세요.'
+      '혼용률은 레이온 50% · 폴리에스터 25% · 스판덱스 25%입니다. 늘어짐·보풀 문의는 우측 하단 문의 버튼으로 받습니다.'
     ],
     care:'니트라 망에 넣어 찬물 단독 세탁하고 눕혀서 그늘 건조해 주세요. 건조기와 옷걸이 건조는 피합니다.',
-    link:''
+    link:'https://smartstore.naver.com/ruden/products/13883912580'
   },
 
   /* ── 10. 반 터틀넥 슬림 니트 (4640228) ── */
@@ -1155,7 +1155,7 @@ const PRODUCTS = [
       '폴리에스터 위주 혼방이라 가볍게 관리할 수 있습니다. 봄·가을 시즌이지만 겨울 이너로 받쳐 입기 좋은 두께입니다.'
     ],
     care:'기계세탁이 가능합니다. 다만 니트는 세탁망에 넣어 약하게 돌리고 눕혀서 그늘 건조를 권합니다.',
-    link:''
+    link:'https://smartstore.naver.com/ruden/products/13883912581'
   },
 
   /* ── 11. V넥 슬림 머슬 니트 (4682906) ── */
@@ -1202,7 +1202,7 @@ const PRODUCTS = [
       '원단이 얇은 편이라 겨울 단독 착용보다는 코트·자켓 안에 받치는 쪽을 권합니다. 라이트그레이·카멜은 밝은 톤 코디용입니다.'
     ],
     care:'얇은 니트라 세탁망에 넣어 찬물 단독 세탁하고 눕혀서 그늘 건조해 주세요. 보풀 관리를 위해 옷걸이 건조는 피합니다.',
-    link:''
+    link:'https://smartstore.naver.com/ruden/products/13883912582'
   },
 
   /* ── 12. V넥 폴로 칼라 니트 (5528586) ── */
@@ -1248,7 +1248,7 @@ const PRODUCTS = [
       '표기 핏은 루즈핏이라 머슬핏보다는 슬림하게 떨어지는 핏입니다.'
     ],
     care:'니트는 접어서 보관하고, 세탁할 때는 망에 넣어 단독 세탁해 주세요. 옷걸이에 걸면 어깨가 늘어날 수 있습니다.',
-    link:''
+    link:'https://smartstore.naver.com/ruden/products/13883912583'
   },
 ];
 
@@ -1453,7 +1453,7 @@ function openDetail(id){
           <dl>
             <dt>배송비</dt><dd><b>3,000원</b> · 70,000원 이상 구매 시 <b>무료배송</b></dd>
             <dt>배송기간</dt><dd>주문 후 <b>1~2일 내 출고</b> · 영업일 기준 <b>2~3일 내 도착</b></dd>
-            <dt>교환·반품</dt><dd>수령일부터 <b>7일 이내</b> 접수 · 단순 변심 시 왕복 배송비 구매자 부담</dd>
+            <dt>교환·반품</dt><dd>수령일부터 <b>7일 이내</b> 접수 · 단순 변심 시 반품 4,000원 · 교환 8,000원 구매자 부담</dd>
           </dl>
           <p class="ship-note">주문 확인 후 정품 검수와 출고가 진행됩니다. 재고 소진 시 즉시 안내 후 100% 환불해 드립니다.</p>
         </div>
@@ -1516,7 +1516,7 @@ function openDetail(id){
     <section class="psec" id="sec-review">
       <h3>REVIEW <em>구매 후기</em></h3>
       <div class="bbs-empty">아직 등록된 후기가 없습니다.<br>첫 후기를 남겨 주시면 적립금을 드립니다.</div>
-      <button class="btn sec tiny" data-toast="리뷰는 TALK으로 보내 주시면 적립금과 함께 등록해 드립니다.">후기 작성</button>
+      <button class="btn sec tiny" data-toast="후기는 스마트스토어 구매평으로 작성하실 수 있습니다.">후기 작성</button>
     </section>
 
     <section class="psec" id="sec-qna">
@@ -1525,7 +1525,7 @@ function openDetail(id){
         <div class="bbs-row"><div class="l"><span class="tag">비밀글</span>배송 기간 문의드립니다</div><span class="d">답변대기</span></div>
         <div class="bbs-row"><div class="l"><span class="tag">비밀글</span>사이즈 재입고 문의</div><span class="d">답변대기</span></div>
       </div>
-      <p class="size-note" style="margin:12px 0 10px">문의는 TALK로도 받습니다. 재고·사이즈 확인은 평균 1시간 내에 답변드립니다.</p>
+      <p class="size-note" style="margin:12px 0 10px">재고·사이즈 문의는 우측 하단 문의 버튼으로 받습니다. 영업일 기준 평균 1시간 내에 답변드립니다.</p>
       <button class="btn sec tiny" id="qnaBtn">문의하기</button>
     </section>
 
@@ -1535,7 +1535,7 @@ function openDetail(id){
         <div class="cs-row"><span class="k">배송기간</span><span class="v">주문 후 <b>1~2일 내 출고</b> · 영업일 기준 <b>2~3일 내 도착</b></span></div>
         <div class="cs-row"><span class="k">배송비</span><span class="v">3,000원 · 70,000원 이상 무료배송</span></div>
         <div class="cs-row"><span class="k">청약철회</span><span class="v">상품 수령일부터 <b>7일 이내</b> 반품·교환이 가능합니다.</span></div>
-        <div class="cs-row"><span class="k">반품 배송비</span><span class="v">단순 변심에 의한 반품·교환은 <b>왕복 배송비(편도 3,000원 기준)를 구매자</b>가 부담합니다.</span></div>
+        <div class="cs-row"><span class="k">반품 배송비</span><span class="v">단순 변심에 의한 반품은 <b>4,000원</b>, 교환은 <b>8,000원</b>을 구매자가 부담합니다.</span></div>
         <div class="cs-row"><span class="k">불량·오배송</span><span class="v">상품 하자·오배송·표시 내용 불일치는 <b>왕복 배송비 포함 전액 무료</b>로 교환 또는 환불해 드립니다.</span></div>
         <div class="cs-row"><span class="k">재고</span><span class="v">재고 소진 시 즉시 안내 후 전액 환불해 드립니다.</span></div>
         <div class="cs-row"><span class="k">상호명</span><span class="v">루덴</span></div>
@@ -1545,7 +1545,7 @@ function openDetail(id){
         <div class="cs-row"><span class="k">사업장 주소</span><span class="v">충청남도 아산시 남산로 41, 풀하우스 201호</span></div>
         <div class="cs-row"><span class="k">전화·이메일</span><span class="v">010-4404-7637 · khcho0402@gmail.com</span></div>
         <div class="cs-row"><span class="k">호스팅</span><span class="v">GitHub, Inc. (GitHub Pages)</span></div>
-        <div class="cs-row"><span class="k">문의</span><span class="v">카카오톡 채널 (우측 하단 TALK) · 전화 · 이메일</span></div>
+        <div class="cs-row"><span class="k">문의</span><span class="v">우측 하단 문의 버튼 · 전화 010-4404-7637 · 이메일 · 스마트스토어 Q&amp;A</span></div>
       </div>
       <div class="law-links" style="display:flex;gap:14px;margin-top:14px;font-size:10.5px;color:#5A5A5E">
         <button data-law="terms" style="border-bottom:1px solid #D8D8DC;padding-bottom:1px">이용약관</button>
@@ -1643,7 +1643,7 @@ function closeDetail(){
 }
 
 function goBuy(p){
-  if(!p.link){ return toast('주문은 TALK으로 받습니다. 상품명과 옵션을 보내 주시면 바로 도와드릴게요.'); }
+  if(!p.link){ return toast('이 상품은 스마트스토어에서 준비 중입니다. 문의 010-4404-7637'); }
   window.open(p.link, '_blank', 'noopener');
 }
 
@@ -1790,15 +1790,15 @@ const LAW = {
 
 <h3>제5조 (주문 및 계약의 성립)</h3>
 <ol>
-<li>이용자는 스토어에서 상품의 색상·사이즈·수량을 확인한 뒤 카카오톡 채널(TALK), 전화 또는 이메일로 주문합니다.</li>
-<li>계약은 회사가 주문 내용과 재고를 확인하고 이용자에게 주문 확정을 알린 시점에 성립합니다.</li>
+<li>이용자는 상품 상세의 <b>바로 구매</b>를 눌러 루덴 스마트스토어(smartstore.naver.com/ruden) 상품 페이지에서 색상·사이즈·수량을 선택하고 결제합니다.</li>
+<li>계약은 스마트스토어에서 결제가 완료되고 회사가 주문 내용과 재고를 확인한 시점에 성립합니다.</li>
 <li>주문 확정 시점에 재고가 없거나 가격·옵션이 변동된 경우 회사는 지체 없이 이를 알리고 이용자의 동의를 받거나 전액 환불합니다.</li>
 </ol>
 
 <h3>제6조 (가격 및 결제)</h3>
 <ol>
 <li>상품 가격은 스토어에 표시된 판매가를 기준으로 하며 부가가치세를 포함합니다. 배송비는 별도이며 70,000원 이상 구매 시 무료입니다.</li>
-<li>결제는 회사가 안내하는 계좌이체 등 회사가 지정한 방법으로 합니다. 결제가 확인되지 않은 주문은 발송이 진행되지 않습니다.</li>
+<li>결제는 루덴 스마트스토어가 제공하는 네이버페이·신용·체크카드 등 결제수단으로 이루어집니다. 결제가 확인되지 않은 주문은 발송이 진행되지 않습니다.</li>
 </ol>
 
 <h3>제7조 (배송)</h3>
@@ -1810,7 +1810,7 @@ const LAW = {
 <h3>제8조 (청약철회 및 교환·반품)</h3>
 <ol>
 <li>이용자는 「전자상거래 등에서의 소비자보호에 관한 법률」에 따라 상품을 수령한 날부터 7일 이내에 청약철회를 할 수 있습니다.</li>
-<li>단순 변심에 의한 반품·교환의 경우 상품의 왕복 배송비(편도 배송비 3,000원 기준)는 이용자가 부담합니다.</li>
+<li>단순 변심에 의한 반품·교환의 경우 상품의 왕복 배송비(반품 4,000원 · 교환 8,000원)는 이용자가 부담합니다.</li>
 <li>상품의 하자, 오배송, 표시·광고 내용과의 불일치로 인한 교환·반품의 경우 왕복 배송비를 포함한 모든 비용을 회사가 부담하며, 전액 무료로 교환 또는 환불 처리합니다.</li>
 <li>다음 각 호의 경우에는 청약철회가 제한될 수 있습니다.
   <ul>
@@ -1820,7 +1820,7 @@ const LAW = {
   <li>상품의 색상·소재·사이즈 차이가 상품 상세에 표시한 기준 범위 안에 있는 경우</li>
   </ul>
 </li>
-<li>청약철회는 카카오톡 채널(TALK), 전화(010-4404-7637), 이메일(khcho0402@gmail.com)로 접수할 수 있습니다.</li>
+<li>청약철회는 스마트스토어 주문내역의 취소·반품 신청, 전화(010-4404-7637), 이메일(khcho0402@gmail.com)로 접수할 수 있습니다.</li>
 </ol>
 
 <h3>제9조 (환불)</h3>
@@ -2035,7 +2035,7 @@ $('#cartList').addEventListener('click', e => {
 $('#cartBuy').addEventListener('click', () => {
   const first = state.cart.map(c => byId(c.id)).find(p => p.link);
   if(first) window.open(first.link, '_blank', 'noopener');
-  else toast('주문은 TALK으로 받습니다. 장바구니 내역을 그대로 보내 주세요.');
+  else toast('스마트스토어에서 상품별로 결제해 주세요. 문의 010-4404-7637');
 });
 $('#cartKakao').addEventListener('click', () => {
   if(KAKAO_URL) window.open(KAKAO_URL, '_blank', 'noopener');
