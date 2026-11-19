@@ -77,19 +77,52 @@
   .tab.on{color:#111;font-weight:700}
   .tab.on::after{content:"";position:absolute;left:-1px;right:-1px;bottom:-1px;height:1.5px;background:#111}
 
-  /* ── 인트로 ── */
-  .intro{padding:26px 16px 18px;border-bottom:1px solid var(--line)}
-  .intro .eyebrow{font-size:9.5px;letter-spacing:.24em;color:#9B9BA0;margin:0 0 9px}
-  .intro h1{
-    margin:0 0 8px;font-family:"Liberation Serif","Times New Roman",Georgia,serif;
-    font-size:24px;font-weight:400;letter-spacing:.01em;line-height:1.25;
+  /* ── 에디토리얼 히어로 슬라이더 ── */
+  .hero{position:relative;width:100%;overflow:hidden;background:#111;user-select:none}
+  .hero-track{display:flex;transition:transform .55s cubic-bezier(.22,1,.36,1);will-change:transform}
+  .hero-slide{
+    position:relative;flex:0 0 100%;width:100%;aspect-ratio:4/5;max-height:74vh;overflow:hidden;cursor:pointer;
   }
-  .intro p{margin:0;font-size:11.5px;line-height:1.8;color:#77777C;max-width:520px}
-  .intro .badges{display:flex;gap:6px;margin-top:13px;flex-wrap:wrap}
-  .intro .badges span{
-    font-size:10px;letter-spacing:.02em;color:#4A4A4E;border:1px solid #E4E4E7;
-    border-radius:999px;padding:5px 9px;background:#FAFAFA;
+  @media (min-width:768px){
+    .hero-slide{aspect-ratio:16/7;max-height:600px}
   }
+  .hero-slide img{width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform 6s ease}
+  .hero-slide.active img{transform:scale(1.03)}
+  .hero-scrim{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,0) 42%,rgba(0,0,0,.68) 100%);
+    pointer-events:none;
+  }
+  .hero-cap{
+    position:absolute;left:20px;right:20px;bottom:28px;color:#fff;z-index:2;
+    max-width:1200px;margin:0 auto;pointer-events:none;
+  }
+  @media (min-width:768px){
+    .hero-cap{left:40px;right:40px;bottom:42px}
+  }
+  .hero-kicker{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.78);margin:0 0 8px}
+  .hero-title{
+    margin:0 0 6px;font-family:"Liberation Serif","Times New Roman",Georgia,serif;
+    font-size:28px;font-weight:400;line-height:1.15;letter-spacing:.01em;
+  }
+  @media (min-width:768px){.hero-title{font-size:40px}}
+  .hero-sub{margin:0;font-size:12px;color:rgba(255,255,255,.86);letter-spacing:.01em}
+  .hero-meta{
+    position:absolute;right:18px;bottom:28px;z-index:3;display:flex;align-items:center;gap:10px;color:#fff;
+    font-size:10.5px;letter-spacing:.14em;
+  }
+  @media (min-width:768px){.hero-meta{right:40px;bottom:42px}}
+  .hero-dots{display:flex;gap:5px;align-items:center}
+  .hero-dots i{display:block;width:16px;height:1.5px;background:rgba(255,255,255,.35);transition:background .3s,width .3s;cursor:pointer}
+  .hero-dots i.on{width:26px;background:#fff}
+  .hero-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:36px;height:36px;
+    display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.8);
+    background:rgba(0,0,0,.22);backdrop-filter:blur(4px);border-radius:50%;transition:background .2s;
+  }
+  .hero-arrow:hover{background:rgba(0,0,0,.48)}
+  .hero-prev{left:12px}
+  .hero-next{right:12px}
 
   /* ── 필터 / 정렬 줄 ── */
   .bar{display:flex;align-items:center;justify-content:space-between;padding:14px 14px 8px;font-size:11px;color:var(--sub)}
@@ -522,15 +555,46 @@
   <nav class="tabs" id="tabs" aria-label="카테고리"></nav>
 </div>
 
-<!-- ── 인트로 ── -->
-<section class="intro" id="intro">
-  <p class="eyebrow">LUDEN · MEN'S SELECT</p>
-  <h1>겨울 아우터부터 와이드 데님까지, 열세 벌로 정리했습니다</h1>
-  <p>루덴이 직접 고른 13종입니다. 코트·집업·니트·후드·데님 팬츠가 서로 겹치지 않게 두께와 기장, 카라 모양을 맞춰 옷장에서 조합이 되는 라인업으로 골랐습니다.</p>
-  <div class="badges">
-    <span>70,000원 이상 무료배송</span>
-    <span>영업일 기준 2~3일 내 도착</span>
-    <span>불량·오배송 교환 접수</span>
+<!-- ── 에디토리얼 히어로 ── -->
+<section class="hero" id="hero" aria-label="시즌 룩북">
+  <div class="hero-track" id="heroTrack">
+    <article class="hero-slide active" data-pid="coat-trench">
+      <img src="luden_prod_1_main.jpg" alt="루덴 더블 레이어 트렌치 울 코트">
+      <div class="hero-scrim"></div>
+      <div class="hero-cap">
+        <p class="hero-kicker">26 FW WINTER ARCHIVE · 01</p>
+        <h1 class="hero-title">Double Layer Trench</h1>
+        <p class="hero-sub">루덴 더블 레이어 트렌치 울 코트 — 59,000원</p>
+      </div>
+    </article>
+    <article class="hero-slide" data-pid="pants-denim-wide">
+      <img src="luden_prod_13_main.jpg" alt="루덴 블랙 워싱 와이드 데님 팬츠">
+      <div class="hero-scrim"></div>
+      <div class="hero-cap">
+        <p class="hero-kicker">NEW ARRIVAL · 02</p>
+        <h2 class="hero-title">Wide Washed Denim</h2>
+        <p class="hero-sub">블랙 워싱 와이드 데님 팬츠 — 31,000원</p>
+      </div>
+    </article>
+    <article class="hero-slide" data-pid="knit-halfneck">
+      <img src="luden_prod_10_main.jpg" alt="루덴 반 터틀넥 슬림 니트">
+      <div class="hero-scrim"></div>
+      <div class="hero-cap">
+        <p class="hero-kicker">ESSENTIAL KNITWEAR · 03</p>
+        <h2 class="hero-title">Half-Neck Slim Knit</h2>
+        <p class="hero-sub">반 터틀넥 슬림 니트 — 25,000원</p>
+      </div>
+    </article>
+  </div>
+  <button class="hero-arrow hero-prev" id="heroPrev" aria-label="이전">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="hero-arrow hero-next" id="heroNext" aria-label="다음">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+  <div class="hero-meta">
+    <span id="heroNum">01 / 03</span>
+    <div class="hero-dots" id="heroDots"></div>
   </div>
 </section>
 
@@ -2120,6 +2184,44 @@ $('#pdpIn').addEventListener('click', e => {
     else toast('전화 010-4404-7637 · 이메일 khcho0402@gmail.com로 문의해 주세요.');
   }
 });
+
+/* 히어로 슬라이더 */
+(function(){
+  const track = $('#heroTrack');
+  if(!track) return;
+  const slides = Array.from(track.children);
+  const dotsWrap = $('#heroDots');
+  const numEl = $('#heroNum');
+  let idx = 0, timer = null, startX = 0;
+  dotsWrap.innerHTML = slides.map((_,i) => `<i data-i="${i}" class="${i===0?'on':''}"></i>`).join('');
+  const dots = Array.from(dotsWrap.children);
+  function go(n){
+    idx = (n + slides.length) % slides.length;
+    track.style.transform = `translate3d(-${idx*100}%,0,0)`;
+    slides.forEach((s,i) => s.classList.toggle('active', i===idx));
+    dots.forEach((d,i) => d.classList.toggle('on', i===idx));
+    numEl.textContent = `0${idx+1} / 0${slides.length}`;
+  }
+  function resetTimer(){ clearInterval(timer); timer = setInterval(() => go(idx+1), 4500); }
+  $('#heroPrev').addEventListener('click', e => { e.stopPropagation(); go(idx-1); resetTimer(); });
+  $('#heroNext').addEventListener('click', e => { e.stopPropagation(); go(idx+1); resetTimer(); });
+  dotsWrap.addEventListener('click', e => {
+    const d = e.target.closest('[data-i]');
+    if(!d) return;
+    e.stopPropagation();
+    go(+d.dataset.i); resetTimer();
+  });
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx) > 40){ go(dx < 0 ? idx+1 : idx-1); resetTimer(); }
+  });
+  track.addEventListener('click', e => {
+    const s = e.target.closest('.hero-slide');
+    if(s && s.dataset.pid && typeof openDetail === 'function') openDetail(s.dataset.pid);
+  });
+  resetTimer();
+})();
 
 /* 시작 */
 renderGrid();
