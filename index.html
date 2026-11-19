@@ -623,7 +623,7 @@
     <div class="sum sub"><span class="k">배송비</span><span class="v" id="cartShip">0원</span></div>
     <div class="sum"><span class="k">총 결제금액</span><span class="v" id="cartTotal">0원</span></div>
     <div class="btns">
-      <button class="btn pri" id="cartBuy">주문하기</button>
+      <a class="btn pri" id="cartBuy" href="#" target="_blank" rel="noopener">주문하기</a>
       <button class="btn kakao" id="cartKakao">문의하기</button>
     </div>
   </div>
@@ -641,7 +641,7 @@
       <span>BAG</span>
     </button>
     <button class="btn sec" id="addCart">장바구니</button>
-    <button class="btn pri" id="buyNow">바로 구매</button>
+    <a class="btn pri" id="buyNow" href="#" target="_blank" rel="noopener">바로 구매</a>
   </div>
 </div>
 
@@ -1991,10 +1991,11 @@ $('#talkBtn').addEventListener('click', () => {
 });
 
 $('#addCart').addEventListener('click', addPicksToCart);
-$('#buyNow').addEventListener('click', () => {
-  if(!cur) return;
-  if(!sel.picks.length) return toast('색상과 사이즈를 선택해 주세요.');
-  goBuy(cur);
+$('#buyNow').addEventListener('click', (e) => {
+  if(!cur) return e.preventDefault();
+  if(!sel.picks.length){ e.preventDefault(); return toast('색상과 사이즈를 선택해 주세요.'); }
+  if(!cur.link){ e.preventDefault(); return toast('이 상품은 스마트스토어에서 준비 중입니다. 문의 010-4404-7637'); }
+  e.currentTarget.href = cur.link;
 });
 
 $('#scrim').addEventListener('click', closeAll);
@@ -2032,10 +2033,10 @@ $('#cartList').addEventListener('click', e => {
     if(!state.cart.length) toast('장바구니가 비었습니다.');
   }
 });
-$('#cartBuy').addEventListener('click', () => {
+$('#cartBuy').addEventListener('click', (e) => {
   const first = state.cart.map(c => byId(c.id)).find(p => p.link);
-  if(first) window.open(first.link, '_blank', 'noopener');
-  else toast('스마트스토어에서 상품별로 결제해 주세요. 문의 010-4404-7637');
+  if(!first){ e.preventDefault(); return toast('스마트스토어에서 상품별로 결제해 주세요. 문의 010-4404-7637'); }
+  e.currentTarget.href = first.link;
 });
 $('#cartKakao').addEventListener('click', () => {
   if(KAKAO_URL) window.open(KAKAO_URL, '_blank', 'noopener');
